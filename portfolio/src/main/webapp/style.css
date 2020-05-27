@@ -17,3 +17,16 @@ h1, p{
 #greeting-container {
   margin-top: 20px;
 }
+
+a:link, a:visited {
+  text-decoration: none;
+  background-color: lightblue;
+  color:black;
+
+}
+
+a:hover, a:active {
+  text-decoration: initial;
+  background-color: white;
+}
+
