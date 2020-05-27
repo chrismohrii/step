@@ -7,8 +7,8 @@
   font-family:Verdana, Geneva, Tahoma, sans-serif;
 }
 
-h1, p{
-    background-color: lightblue;
+h1{
+    text-shadow: 3px 4px 3px #ccc;
 }
 
 #p {
