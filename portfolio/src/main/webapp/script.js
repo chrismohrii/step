@@ -26,3 +26,16 @@ function addRandomGreeting() {
   const greetingContainer = document.getElementById('greeting-container');
   greetingContainer.innerText = greeting;
 }
+
+function addRandomFunFact(){
+    const facts = 
+        ['Chris has a twin sister', 'Chris is trilingual', 'Chris knows Python'];
+    
+  //Pick a fact.
+  const fact = facts[Math.floor(Math.random() * facts.length)];
+
+  //Add it to the page.
+  const factContainer = document.getElementById('fact-container');
+  factContainer.innerText = fact;
+
+}

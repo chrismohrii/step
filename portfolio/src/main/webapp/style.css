@@ -2,8 +2,18 @@
   margin-left: auto;
   margin-right: auto;
   width: 650px;
+  color:black;
+  background-color: lightblue;
 }
 
+h1, p{
+    background-color: lightblue;
+}
+
+#p {
+  text-align: left;
+  color: black;
+}
 #greeting-container {
   margin-top: 20px;
 }
