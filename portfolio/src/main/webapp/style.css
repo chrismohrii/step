@@ -8,7 +8,8 @@
 }
 
 h1{
-    text-shadow: 3px 4px 3px #ccc;
+    text-shadow: 2px 2px 2px #ccc;
+    text-align: center;
 }
 
 #p {
@@ -29,5 +30,11 @@ a:link, a:visited {
 a:hover, a:active {
   text-decoration: initial;
   background-color: white;
+}
+
+hr{
+    border-style: solid;
+    margin-left: 2cm;
+    margin-right: 2cm;
 }
 
