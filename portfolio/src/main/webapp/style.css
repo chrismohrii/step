@@ -1,73 +1,73 @@
 #content {
-  width:1000px;
-  color:#777;
-  font-family:Verdana, Geneva, Tahoma, sans-serif;
+  width: 1000px;
+  color: #777;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
   background-color: lightblue;
-  margin-left:auto;
-  margin-right:auto;
+  margin-left: auto;
+  margin-right: auto;
 }
+
 
 #pix {
-    text-align:center;
-    background-color: none;
+  text-align: center;
+  background-color: none;
 }
 
-h1{
-    text-align: center;
-    color:#777;
+
+h1 {
+  text-align: center;
 }
 
-h2{
-    text-align: left;
-    font-weight: 500;
-    color:#777;
+
+h2 {
+  text-align: left;
+  font-weight: 500;
 }
 
 #p {
   text-align: left;
-  color: #777;
 }
+
 
 #p2 {
   text-align: center;
-  color: #777;
 }
 #greeting-container, #fact-container {
   margin-top: 20px;
 }
 
-a.one:link, a.one:visited {
+
+a.navigation-link:link, a.navigation-link:visited {
   text-decoration: none;
-  background-color:lightblue;
-  color:#777;
-
+  background-color: lightblue;
+  color: #777;
 }
 
-a.one:hover, a.one:active {
-  text-decoration: initial;
-  background-color: white;
-}
 
-a.two:link, a.two:visited {
-  text-decoration: none;
-  background-color:white;
-  color:#777;
-
-}
-
-a.two:hover, a.two:active {
+a.navigation-link:hover, a.navigation-link:active {
   text-decoration: initial;
   background-color: white;
 }
 
 
-
-hr{
-    border-style: solid;
-    margin-left: 0.5cm;
-    margin-right: 0.5cm;
-    color:#777;
+a.image-link:link, a.image-link:visited {
+  text-decoration: none;
+  background-color: white;
 }
+
+
+a.image-link:hover, a.image-link:active {
+  text-decoration: initial;
+  background-color: white;
+}
+
+
+hr {
+  border-style: solid;
+  margin-left: 0.5cm;
+  margin-right: 0.5cm;
+}
+
 
 /* Create two columns/boxes that floats next to each other */
 nav {
@@ -76,13 +76,13 @@ nav {
   background: lightblue;
 }
 
-
 /* Style the list inside the menu */
 nav ul {
   list-style-type: none;
   padding: 0;
   text-align: center;
 }
+
 
 article {
   float: left;
@@ -91,13 +91,15 @@ article {
   background-color: white;
 }
 
+
 /* Clear floats after the columns */
 section:after {
   content: "";
   display: table;
   clear: both;
-  background-color:lightgray;
+  background-color: lightgray;
 }
+
 
 /* Style the footer */
 footer {
@@ -107,10 +109,6 @@ footer {
   color: white;
 }
 
-* {
-  box-sizing: border-box;
-}
-
 
 /* Style the list inside the menu */
 nav ul {
@@ -121,4 +119,9 @@ nav ul {
 
 * {
   box-sizing: border-box;
+}
+
+
+.image-title:not(:first-child) {
+  margin-top: 50px;
 }

@@ -27,14 +27,17 @@ function addRandomGreeting() {
   greetingContainer.innerText = greeting;
 }
 
+/**
+ * Adds a random fun fact to the page.
+ */
 function addRandomFunFact(){
     const facts = 
         ['Chris has a twin sister', 'Chris is trilingual', 'Chris knows Python'];
     
-  //Pick a fact.
+  // Pick a fact.
   const fact = facts[Math.floor(Math.random() * facts.length)];
 
-  //Add it to the page.
+  // Add it to the page.
   const factContainer = document.getElementById('fact-container');
   factContainer.innerText = fact;
 
