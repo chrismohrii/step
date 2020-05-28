@@ -1,50 +1,72 @@
 #content {
-  margin-left: auto;
-  margin-right: auto;
-  width: 650px;
-  color:black;
+  width:1000px;
+  color:#777;
   font-family:Verdana, Geneva, Tahoma, sans-serif;
   background-color: lightblue;
+  margin-left:auto;
+  margin-right:auto;
+}
+
+#pix {
+    text-align:center;
+    background-color: none;
 }
 
 h1{
-    text-shadow: 2px 2px 2px #ccc;
     text-align: center;
+    color:#777;
 }
 
 h2{
     text-align: left;
     font-weight: 500;
+    color:#777;
 }
 
 #p {
   text-align: left;
-  color: black;
+  color: #777;
 }
-#greeting-container {
+
+#p2 {
+  text-align: center;
+  color: #777;
+}
+#greeting-container, #fact-container {
   margin-top: 20px;
 }
 
-#fact-container {
-    margin-top: 20px; 
-}
-
-a:link, a:visited {
+a.one:link, a.one:visited {
   text-decoration: none;
-  background-color: lightblue;
-  color:black;
+  background-color:lightblue;
+  color:#777;
 
 }
 
-a:hover, a:active {
+a.one:hover, a.one:active {
   text-decoration: initial;
   background-color: white;
 }
 
+a.two:link, a.two:visited {
+  text-decoration: none;
+  background-color:white;
+  color:#777;
+
+}
+
+a.two:hover, a.two:active {
+  text-decoration: initial;
+  background-color: white;
+}
+
+
+
 hr{
     border-style: solid;
-    margin-left: 2cm;
-    margin-right: 2cm;
+    margin-left: 0.5cm;
+    margin-right: 0.5cm;
+    color:#777;
 }
 
 /* Create two columns/boxes that floats next to each other */
@@ -52,20 +74,21 @@ nav {
   float: left;
   width: 20%;
   background: lightblue;
-  padding: 20px;
 }
+
 
 /* Style the list inside the menu */
 nav ul {
   list-style-type: none;
   padding: 0;
+  text-align: center;
 }
 
 article {
   float: left;
   padding: 20px;
   width: 80%;
-  background-color: #f1f1f1;
+  background-color: white;
 }
 
 /* Clear floats after the columns */
@@ -88,3 +111,14 @@ footer {
   box-sizing: border-box;
 }
 
+
+/* Style the list inside the menu */
+nav ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+
+* {
+  box-sizing: border-box;
+}

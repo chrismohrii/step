@@ -1,3 +1,4 @@
+ 
 <!DOCTYPE html>
 <html>
   <head>
@@ -8,18 +9,18 @@
   </head>
   <body>
     <div id="content">
-      <h1>Chris Mohri's Portfolio</h1>
+      <h1>Christopher Mohri</h1>
       <hr>
       <section>
         <nav>
             <ul>
-                 <li><a href="index.html">Home</a></li>
+                 <li><a class="one" href="index.html" style="color:#777;" >Home</a></li>
                  <br>
-                 <li><a href="pictures.html">Pictures</a></li>
+                 <li><a class="one" href="pictures.html" style="color:#777;">Pictures</a></li>
                  <br>
-                 <li><a href="hobbies.html">Hobbies</a></li>
+                 <li><a class="one" href="hobbies.html" style="color:#777;" >Hobbies</a></li>
                  <br>                              
-                 <li><a href="resume.html">Resume</a></li>
+                 <li><a class="one" href="resume.html" style="color:#777;" >Resume</a></li>
                  <br>
                  
             </ul>
@@ -28,12 +29,26 @@
          <p> <br>Hi! My name is Chris Mohri. I am a rising sophmore at Cornell University 
           studying Computer Science and Mathematics, with a minor in Business. I am 
           currently a STEP intern at Google. This is my portfolio.</p>
-         <p>Picture of Chris:</p>
-         <img src="images.html/googlepicture.jpg" alt="Picture of Chris" style="width:70%;height:70%;">
-         <p>Here are some links</p>
-         <a href="https://www.linkedin.com/in/christopher-mohri-3429841a0">LinkedIn Profile<br></a>
-         <a href="https://github.com/chrismohrii">GitHub Profile<br></a>
-         <a href="https://www.tennisrecruiting.net/player.asp?id=848956">High School Tennis Profile<br></a>
+         <p>Here's a picture of me:</p>
+         <img src="images.html/googlepicture.jpg" alt="Picture of Chris" style="width:40%;height:40%;">
+         <p>Below are some cool links</p>
+            <div id="pix">
+                <p>
+                    <a class="two" href="https://www.linkedin.com/in/christopher-mohri-3429841a0">
+                    <img alt="LinkedIn Profile" src="images.html/linkedinlogo.jpg" style="width:40%;height:40%;">
+                    </a>
+                </p>
+                <p>
+                    <a class="two" href="https://github.com/chrismohrii">
+                    <img alt="GitHub Profile" src="images.html/githublogo.png" style="width:40%;height:40%;">
+                    </a>
+                </p>
+                <p>
+                    <a class="two" href="https://www.tennisrecruiting.net/player.asp?id=848956">
+                    <img alt="Tennisrecruiting Profile" src="images.html/tennisrecruitinglogo.jpeg" style="width:25%;height:25%;">
+                    </a>
+                </p>
+            </div>
          <p>Click on these buttons for random messages:</p>
          <button onclick="addRandomGreeting()">Hello</button>
          <div id="greeting-container"></div>
@@ -44,7 +59,7 @@
       </section>
 
       <footer>
-         <p>Contact<br>chrismohri@google.com<br>ccm244@cornell.edu </p>
+         <p>Contact<br><br>chrismohri@google.com<br>ccm244@cornell.edu </p>
       </footer>
     </div>
   </body>
