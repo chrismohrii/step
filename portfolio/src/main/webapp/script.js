@@ -37,8 +37,86 @@ function addRandomFunFact(){
   // Pick a fact.
   const fact = facts[Math.floor(Math.random() * facts.length)];
 
+
   // Add it to the page.
   const factContainer = document.getElementById('fact-container');
   factContainer.innerText = fact;
+    
 
+}
+
+/**
+ * Adds a new number for first button in the game. 
+ */
+function addRandomNumber1(){
+    const numbers = 
+        ['1', '2', '3', "4", "5"];
+    
+  // Pick a number.
+  const number = numbers[Math.floor(Math.random() * numbers.length)];
+
+
+  // Add it to the page.
+  const numberContainer = document.getElementById('number1-container');
+  numberContainer.innerText = number;
+  hasWon();
+    
+
+}
+
+/**
+ * Adds a new number for second button in the game. 
+ */
+function addRandomNumber2(){
+    const numbers = 
+        ['1', '2', '3', "4", "5"];
+    
+  // Pick a number.
+  const number = numbers[Math.floor(Math.random() * numbers.length)];
+
+
+  // Add it to the page.
+  const numberContainer = document.getElementById('number2-container');
+  numberContainer.innerText = number;
+  hasWon();
+
+}
+
+/**
+ * Adds a new number for third button in the game. 
+ */
+function addRandomNumber3(){
+    const numbers = 
+        ['1', '2', '3', "4", "5"];
+    
+  // Pick a number.
+  const number = numbers[Math.floor(Math.random() * numbers.length)];
+
+
+  // Add it to the page.
+  const numberContainer = document.getElementById('number3-container');
+  numberContainer.innerText = number;   
+  hasWon(); 
+
+}
+
+/*
+* Checks if the game is won. 
+*/
+function hasWon(){
+      const first = document.getElementById('number1-container');
+      const second = document.getElementById('number2-container');
+      const third = document.getElementById('number3-container');
+      const winBox = document.getElementById('win-container');
+      var firstNumber = first.innerText;
+      var secondNumber = second.innerText;
+      var thirdNumber = third.innerText;
+
+      // Compare the numbers for appropriate message. 
+      if (firstNumber === secondNumber && firstNumber == thirdNumber){
+        winBox.innerText = "You Win!";
+      }
+      else {
+          winBox.innerText = "";
+      }
 }

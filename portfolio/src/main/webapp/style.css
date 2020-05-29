@@ -6,6 +6,7 @@
 .left-text {
   text-align: left;
   margin-top: 35px;
+    
   }
 
 .right-text {
@@ -36,7 +37,7 @@ h1 {
   text-align: left;
 }
 
-#greeting-container, #fact-container {
+#greeting-container, #fact-container, #number1-container, #number2-container, #number3-container {
   margin-top: 20px;
 }
 
@@ -54,4 +55,3 @@ img {
   height:10cm;
   width: 10cm;
 }
-
