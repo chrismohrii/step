@@ -1,66 +1,44 @@
-#content {
-  width: 1000px;
-  color: #777;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
-  background-color: lightblue;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-
-#pix {
+.center-text {
   text-align: center;
-  background-color: none;
+  margin-top: 35px;
+  }
+
+.left-text {
+  text-align: left;
+  margin-top: 35px;
+  }
+
+.right-text {
+  text-align: right;
+  margin-top: 35px;
+  }  
+
+.margin-atop {
+  margin-top: 35px;
 }
 
+.peach {
+    background-color: antiquewhite;
+}
+
+.header-col {
+  text-align: center;
+  font-size: 300%;
+  color:rgb(9, 139, 219);
+}
 
 h1 {
-  text-align: center;
-}
-
-
-h2 {
   text-align: left;
-  font-weight: 500;
+  font-weight:500;
 }
 
 #p {
   text-align: left;
 }
 
-
-#p2 {
-  text-align: center;
-}
 #greeting-container, #fact-container {
   margin-top: 20px;
 }
-
-
-a.navigation-link:link, a.navigation-link:visited {
-  text-decoration: none;
-  background-color: lightblue;
-  color: #777;
-}
-
-
-a.navigation-link:hover, a.navigation-link:active {
-  text-decoration: initial;
-  background-color: white;
-}
-
-
-a.image-link:link, a.image-link:visited {
-  text-decoration: none;
-  background-color: white;
-}
-
-
-a.image-link:hover, a.image-link:active {
-  text-decoration: initial;
-  background-color: white;
-}
-
 
 hr {
   border-style: solid;
@@ -68,60 +46,12 @@ hr {
   margin-right: 0.5cm;
 }
 
-
-/* Create two columns/boxes that floats next to each other */
-nav {
-  float: left;
-  width: 20%;
-  background: lightblue;
-}
-
-/* Style the list inside the menu */
-nav ul {
-  list-style-type: none;
-  padding: 0;
-  text-align: center;
-}
-
-
-article {
-  float: left;
-  padding: 20px;
-  width: 80%;
-  background-color: white;
-}
-
-
-/* Clear floats after the columns */
-section:after {
-  content: "";
-  display: table;
-  clear: both;
-  background-color: lightgray;
-}
-
-
-/* Style the footer */
-footer {
-  background-color: #777;
-  padding: 10px;
-  text-align: center;
-  color: white;
-}
-
-
-/* Style the list inside the menu */
-nav ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-
-* {
-  box-sizing: border-box;
-}
-
-
 .image-title:not(:first-child) {
   margin-top: 50px;
 }
+
+img {
+  height:10cm;
+  width: 10cm;
+}
+

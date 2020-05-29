@@ -4,65 +4,92 @@
     <meta charset="UTF-8">
     <title>Chris's Resume</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" 
+    integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+    crossorigin="anonymous">
     <script src="script.js"></script>
   </head>
-  <body>
-    <div id="content">
-      <h1>Resume</h1>
-      <hr>
-      <section>
-        <nav>
-          <ul>
-            <li><a class="navigation-link" href="index.html">Home</a></li>
-            <br>
-            <li><a class="navigation-link" href="pictures.html">Pictures</a></li>
-            <br>
-            <li><a class="navigation-link" href="hobbies.html">Hobbies</a></li>
-            <br>                              
-            <li><a class="navigation-link" href="resume.html">Resume</a></li>
-            <br>                 
-          </ul>
-        </nav>
-        <article>
-          <h2><br>Education<br></h1>
-          <p>Chris graduated from Hunter College High School, located in the Upper East 
-             Side in Manhattan, in 2019. Click
-             <a class="navigation-link" href="https://en.wikipedia.org/wiki/Hunter_College_High_School">here</a> 
-             to learn more about Hunter Hunter College High School. Chris was captain
-             of the Varsity Tennis Team and a member of Hunter Finance Club. <br></p>
-          <p>Chris currently attends the College of Arts & Sciences at Cornell University.
-             He is a rising sophmore, and plans to major in Computer Science and Mathematics, 
-             with a minor in Business. He is a member of the Club Tennis Team. 
-             <br><br>
-             Here are some relevant courses he has taken:
-             <br>
-             CS 1110 - Introduction to Computing Using Python<br>
-             CS 2850 - Networks<br>
-             CS 2110 - Object-Oriented Programming and Data Structures<br>
-             CS 2800 - Discrete Structures<br>
-             MATH 1920 - Multivariable Calculus<br>
-             MATH 2940 - Linear Algebra <br><br></p>
-             <div id="pix">
-             <p>
-               <a class="image-link" href="https://www.cornell.edu">
-                  <img alt="Cornell logo" src="images.html/cornelllogo.png" style="width:40%;height:40%;">
-                  </a>
-             </p>
-            <div>
-            <h2><br><br><br>Work History<br></h2>
-            <p>Chris is currently a STEP intern at Google. This is his first real job!</p>
-            <div id="pix">
-            <p>
-              <a class="image-link" href="https://www.google.com">
-              <img alt="Google logo" src="images.html/googlelogo.png" style="width:40%;height:40%;">
-              </a>
-            </p>
-          </div>            
-        </article>
-      </section>
-      <footer>
-        <p>Contact<br><br>chrismohri@google.com<br>ccm244@cornell.edu </p>
-      </footer>
+<body>
+   <div class:"container-fluid">
+    <div>
+  <div class="collapse" id="navbarToggleExternalContent">
+    <div class="bg-dark p-4">
+      <h5 class="text-white h4">Menu</h5><br>
+      <a href="index.html" class="btn btn-outline-light" role="dark">Home</a><br><br>
+      <a href="pictures.html" class="btn btn-outline-light" role="dark">Pictures</a><br><br>
+      <a href="hobbies.html" class="btn btn-outline-light" role="dark">Hobbies</a><br><br>
+      <a href="resume.html" class="btn btn-outline-light" role="dark">Resume</a><br>
     </div>
-  </body>
+  </div>
+  <div class:"col">
+  <nav class="navbar navbar-dark bg-dark">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  </nav>
+  </div>
+  </div>  
+  <div class="row peach">
+    <div class="col-2">
+    </div>
+    <div class="col-8 margin-atop">
+      <h2>Resume</h2>
+    </div>
+  </div>
+  <div class="row peach">
+    <div class="col-2">
+    </div>
+    <div class="col-4 margin-atop">
+      Education<br><br><br>Chris graduated from Hunter College High School, located in the Upper East 
+      Side in Manhattan, in 2019. Click
+      <a class="one" href="https://en.wikipedia.org/wiki/Hunter_College_High_School">here</a> 
+      to learn more about Hunter Hunter College High School. Chris was captain
+      of the Varsity Tennis Team and a member of Hunter Finance Club. <br></p>
+      <p>Chris currently attends the College of Arts & Sciences at Cornell University.
+      He is a rising sophmore, and plans to major in Computer Science and Mathematics, 
+      with a minor in Business. He is a member of the Club Tennis Team. 
+      <br><br>
+      Here are some relevant courses he has taken:
+      <br>
+      CS 1110 - Introduction to Computing Using Python<br>
+      CS 2850 - Networks<br>
+      CS 2110 - Object-Oriented Programming and Data Structures<br>
+      CS 2800 - Discrete Structures<br>
+      MATH 1920 - Multivariable Calculus<br>
+      MATH 2940 - Linear Algebra <br><br></p> <br><br>
+    </div>
+    <div class="col-4 margin-atop center-text">
+      <a class="image-link" href="https://www.cornell.edu">
+      <img alt="Cornell logo" src="images.html/cornelllogo.png" style="width:6cm;height:6cm;">
+      </a>
+    </div>
+  </div>
+   <div class="row peach">
+    <div class="col-2">
+    </div>
+    <div class="col-4 margin-atop">
+      Chris is currently a STEP intern at Google. This is his first real job!
+    </div>
+    <div class="col-4 margin-atop center-text">
+      <a class="image-link" href="https://www.google.com">
+      <img alt="Google logo" src="images.html/googlelogo.png" style="width:6cm;height:6cm;">
+      </a>
+      <br><br>
+    </div>
+  </div>
+  <div class="row bg-dark text-light">
+    <div class="col-2">
+    </div>
+    <div class="col-8 center-text">
+      Contact<br><br>chrismohri@google.com<br>ccm244@cornell.edu<br><br>
+    </div>
+  </div>
+</div>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+      crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"></script>
+</body>
 </html>

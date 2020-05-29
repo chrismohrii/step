@@ -4,39 +4,71 @@
     <meta charset="UTF-8">
     <title>Chris's Pictures</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" 
+    integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+    crossorigin="anonymous">
     <script src="script.js"></script>
   </head>
-  <body>
-    <div id="content">
-      <h1>Pictures</h1>
-      <hr>
-      <section>
-        <nav>
-          <ul>
-            <li><a class="navigation-link" href="index.html">Home</a></li>
-            <br>
-            <li><a class="navigation-link" href="pictures.html">Pictures</a></li>
-            <br>
-            <li><a class="navigation-link" href="hobbies.html">Hobbies</a></li>
-            <br>                              
-            <li><a class="navigation-link" href="resume.html">Resume</a></li>
-            <br>                 
-          </ul>
-        </nav>
-        <article>
-        <div id="pix">
-          <p class="image-title">Me with his twin sister Clara at UC Berkeley</p>
-          <img src="images.html/ChrisClaraUCB.jpg" alt="Chris with his twin sister Clara" style="width:40%;height:40%;">
-          <p class="image-title">Me with some of his friends at college</p>
-          <img src="images.html/quad.jpg" alt="Chris with some friends" style="width:40%;height:40%;">
-          <p class="image-title">At Miami Beach</p>
-          <img src="images.html/miami.jpg" alt="Miami Beach" style="width:40%;height:40%">
-          </div>
-        </article>
-      </section>
-      <footer>
-        <p>Contact<br><br>chrismohri@google.com<br>ccm244@cornell.edu </p>
-      </footer>
+<body>
+   <div class:"container-fluid">
+   <div>
+  <div class="collapse" id="navbarToggleExternalContent">
+    <div class="bg-dark p-4">
+      <h5 class="text-white h4">Menu</h5><br>
+      <a href="index.html" class="btn btn-outline-light" role="dark">Home</a><br><br>
+      <a href="pictures.html" class="btn btn-outline-light" role="dark">Pictures</a><br><br>
+      <a href="hobbies.html" class="btn btn-outline-light" role="dark">Hobbies</a><br><br>
+      <a href="resume.html" class="btn btn-outline-light" role="dark">Resume</a><br>
     </div>
-  </body>
+  </div>
+  <div class:"col">
+  <nav class="navbar navbar-dark bg-dark">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  </nav>
+  </div>
+  </div>  
+  <div class="row peach">
+    <div class="col-2">
+    </div>
+    <div class="col-8 margin-atop">
+      <h2>Pictures</h2>
+    </div>
+  </div>
+  <div class="row peach">
+    <div class="col-2">
+    </div>
+    <div class="col-4 margin-atop center-text">
+      Me with my twin sister Clara at UC Berkeley<br>
+      <img class:"rectangular pic" src="images.html/ChrisClaraUCB.jpg" alt="Chris with his twin sister Clara">
+    </div>
+    <div class="col-4 margin-atop center-text">
+      Me with some friends at college<br>
+      <img class:"rectangular pic" src="images.html/quad.jpg" alt="Chris with some friends">
+    </div>
+  </div>
+  <div class="row peach">
+    <div class="col-2">
+    </div>
+    <div class="col-8 margin-atop center-text">
+      At Miami Beach<br>
+      <img src="images.html/miami.jpg" alt="Miami Beach">
+    </div>
+  </div>
+  <div class="row bg-dark text-light">
+    <div class="col-2">
+    </div>
+    <div class="col-8 center-text">
+      Contact<br><br>chrismohri@google.com<br>ccm244@cornell.edu<br><br>
+    </div>
+  </div>
+</div>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+      crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"></script>
+</body>
 </html>
