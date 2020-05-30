@@ -6,52 +6,31 @@
 .left-text {
   text-align: left;
   margin-top: 35px;
-    
-  }
+}
 
 .right-text {
   text-align: right;
   margin-top: 35px;
-  }  
+}  
 
 .margin-atop {
   margin-top: 35px;
 }
 
 .peach {
-    background-color: antiquewhite;
-}
-
-.header-col {
-  text-align: center;
-  font-size: 300%;
-  color:rgb(9, 139, 219);
+  background-color: antiquewhite;
 }
 
 h1 {
   text-align: left;
-  font-weight:500;
-}
-
-#p {
-  text-align: left;
+  font-weight: 500;
 }
 
 #greeting-container, #fact-container, #number1-container, #number2-container, #number3-container {
   margin-top: 20px;
 }
 
-hr {
-  border-style: solid;
-  margin-left: 0.5cm;
-  margin-right: 0.5cm;
-}
-
-.image-title:not(:first-child) {
-  margin-top: 50px;
-}
-
 img {
-  height:10cm;
+  height: 10cm;
   width: 10cm;
 }
