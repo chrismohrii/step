@@ -1,19 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
   <meta charset="UTF-8">
-  <title>Christopher Mohri</title>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" 
-    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-    crossorigin="anonymous">
+  <title>Chris's Hobbies</title>
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" 
+  integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+  crossorigin="anonymous">
   <script src="script.js"></script>
 </head>
-
 <body>
-  <div class:"container-fluid">
 
+  <div class:"container-fluid">
     <div>
       <div class="collapse" id="navbarToggleExternalContent">
         <div class="bg-dark p-4">
@@ -31,65 +29,67 @@
           </button>
         </nav>
       </div>
-    </div>  
+    </div>   
 
-    <div class="row peach">
-      <div class="col-3">
-      </div>
-      <div class="col-6 margin-atop">
-        Hi! My name is Chris Mohri. I am a rising sophmore at Cornell University 
-        studying Computer Science and Mathematics, with a minor in Business. I am 
-        currently a STEP intern at Google. This is my portfolio.
-      </div>
+  <div class="row peach">
+    <div class="col-2">
     </div>
-
-    <div class="row peach">
-      <div class="col center-text">
-        <img src="images.html/googlepicture.jpg" alt="Picture of Chris" style="width:7cm;height:7cm;">
-      </div>
+    <div class="col-8 margin-atop">
+      <h2>Hobbies</h2>
     </div>
   </div>
 
   <div class="row peach">
-    <div class="col center-text">
-      Below are some cool links
+    <div class="col-2">
+    </div>
+    <div class="col-8 margin-atop">
+      Tennis <br>I've been playing tennis from a very young age. When I was in high school, 
+      I competed in junior tournaments. I play less frequently now, usually only
+      for my club tennis team at college. <br><br>
     </div>
   </div>
-
   <div class="row peach">
-    <div class="col center-text">
-      <a class="image-link" href="https://www.linkedin.com/in/christopher-mohri-3429841a0/">
-      <img alt="LinkedIn Profile" src="images.html/linkedinlogo3.png" style="width:4cm;height:4cm;">
-      </a>  
-      <a class="image-link" href="https://github.com/chrismohrii">
-      <img alt="GitHub Profile" src="images.html/githubtransparent.png" style="width:3cm;height:3cm;">
-      </a>
-      <a class="image-link" href="https://www.tennisrecruiting.net/player.asp?id=848956">
-      <img alt="Tennisrecruiting Profile" src="images.html/tennisball2.png" style="width:3.7cm;height:3cm;">
-      </a> 
+    <div class="col-2">
     </div>
-  </div> 
-
+    <div class="col-8 margin-atop">
+      Listening to music<br>My favorites are rap and pop.<br><br>
+    </div>
+  </div>
   <div class="row peach">
-    <div class="col center-text">
-      Click on these buttons for random messages 
+    <div class="col-2">
+    </div>
+    <div class="col-8 margin-atop">
+      Reading<br>In my free time, I like to read. I mostly read newspapers nowadays,
+      but I used to read books more often. <br><br><b>Play a fun game below!</b><br> Press
+      the buttons and try to get the numbers to be the same. <br>
     </div>
   </div>
 
   <div class="row peach">
     <div class="col-3">
     </div>
-    <div class="col-3 right-text">
-      <button class="btn btn-outline-primary" onclick="addRandomGreeting()">Hello</button>
-      <div id="greeting-container"></div>
+    <div class="col-2 center-text">
+      <button class="btn btn-outline-primary" onclick="addRandomNumber('number1-container')">New</button>
+      <div id="number1-container"></div>
     </div>
-    <div class="col-3 left-text">
-      <button class="btn btn-outline-primary" onclick="addRandomFunFact()">Fun Fact <br></button>
-      <div id="fact-container"></div> 
+    <div class="col-2 center-text">
+      <button class="btn btn-outline-primary" onclick="addRandomNumber('number2-container')">New</button>
+      <div id="number2-container"></div>
+    </div>
+    <div class="col-2 center-text">
+      <button class="btn btn-outline-primary" onclick="addRandomNumber('number3-container')">New</button>
+      <div id="number3-container"></div>
     </div>
     <br><br><br>
   </div>
-
+  <div class="row peach">
+    <div class="col-2">
+    </div>
+    <div class="col-8 center-text">
+      <div id="win-container"></div>
+    </div>
+  </div>
+  
   <div class="row bg-dark text-light footer">
     <div class="col center-text">
       Contact<br><br>chrismohri@google.com<br>ccm244@cornell.edu<br><br>
@@ -103,6 +103,5 @@
     crossorigin="anonymous"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
     crossorigin="anonymous"></script>
-
 </body>
 </html>

@@ -26,3 +26,57 @@ function addRandomGreeting() {
   const greetingContainer = document.getElementById('greeting-container');
   greetingContainer.innerText = greeting;
 }
+
+/**
+ * Adds a random fun fact to the page.
+ */
+function addRandomFunFact(){
+    const facts = 
+        ['Chris has a twin sister', 'Chris is trilingual', 'Chris knows Python'];
+    
+  // Pick a fact.
+  const fact = facts[Math.floor(Math.random() * facts.length)];
+
+
+  // Add it to the page.
+  const factContainer = document.getElementById('fact-container');
+  factContainer.innerText = fact;
+    
+
+}
+
+/**
+ * Adds a new number for a given button in the game. 
+ */
+function addRandomNumber(container){
+    const numbers = 
+        ['1', '2', '3', "4", "5"];
+    
+  // Pick a number.
+  const number = numbers[Math.floor(Math.random() * numbers.length)];
+
+
+  // Add it to the page.
+  const numberContainer = document.getElementById(container);
+  numberContainer.innerText = number;
+  hasWon();
+    
+}
+
+/*
+* Checks if the game is won. 
+*/
+function hasWon(){
+  const winBox = document.getElementById('win-container');
+  var firstNumber = document.getElementById('number1-container').innerText;
+  var secondNumber = document.getElementById('number2-container').innerText;
+  var thirdNumber = document.getElementById('number3-container').innerText;
+
+  // Compare the numbers for appropriate message. 
+  if (firstNumber === secondNumber && firstNumber == thirdNumber){
+    winBox.innerText = "You Win!";
+    }
+  else {
+    winBox.innerText = "";
+    }
+}
