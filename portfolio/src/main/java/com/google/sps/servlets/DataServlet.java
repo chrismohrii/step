@@ -27,7 +27,7 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/data")
 public class DataServlet extends HttpServlet {
 
-	ArrayList<String> words = new ArrayList<String>(
+	private ArrayList<String> words = new ArrayList<String>(
       Arrays.asList("I", "am", "Chris"));
 
   @Override
