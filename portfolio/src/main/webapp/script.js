@@ -86,3 +86,24 @@ async function getHello() {
   const hello = await response.text();
   document.getElementById('hello-container').innerText = hello;
 }
+
+/**
+ * Fetches the current state of the game and builds the UI.
+ */
+async function getCommentSection() {
+  fetch('/data').then(response => response.json()).then((comments) => {
+
+  // Build the list of history entries.
+  const historyEl = document.getElementById('history');
+  comments.forEach((comment) => {
+    historyEl.appendChild(createListElement(comment));
+    });
+  });
+}
+
+/** Creates an <li> element containing text. */
+function createListElement(text) {
+  const liElement = document.createElement('li');
+  liElement.innerText = text;
+  return liElement;
+}

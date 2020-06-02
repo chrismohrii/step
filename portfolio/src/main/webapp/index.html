@@ -11,7 +11,7 @@
   <script src="script.js"></script>
 </head>
 
-<body>
+<body  onload="getCommentSection()">
   <div class:"container-fluid">
 
     <div>
@@ -91,9 +91,30 @@
   </div>
 
   <div class="row peach">
+    <div class="col-2">
+    </div>
+    <div class="col-8">
+      <hr>
+    </div>
+  </div>
+
+  <div class="row peach">
 	<div class="col center-text">
-      <button class="btn btn-outline-primary" onclick="getHello()">Fetch the hello!</button>
+      <button class="btn btn-outline-primary" onclick="getHello()">Fetch the comments!</button>
       <div id="hello-container"></div>
+	</div>
+  </div>
+
+  <div class="row peach">
+	<div class="col-3">
+	</div>
+	<div class="col-6 center-text">
+	  <form action="/data" method="POST">
+	  <ul id="history"></ul>
+      Enter a comment!<br/>
+      <textarea name="text-input" class="form-control" id="exampleFormControlTextarea1" rows="3">comment...</textarea>
+      <br/><br/>
+      <input type="submit" class="btn btn-outline-primary margin-bottom"/>
 	</div>
   </div>
 
