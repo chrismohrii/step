@@ -81,21 +81,15 @@ function hasWon(){
     }
 }
 
-async function getComments() {
-  const response = await fetch('/data');
-  const comments = await response.text();
-  document.getElementById('comments-container').innerText = comments;
-}
-
 /**
  * Fetches the current state of the game and builds the UI.
  */
 async function getCommentSection() {
   fetch('/data').then(response => response.json()).then((comments) => {
 
-  // Build the list of history entries.
-  const historyEl = document.getElementById('history');
-  comments.forEach((comment) => {
+    // Build the list of history entries.
+    const historyEl = document.getElementById('history');
+    comments.forEach((comment) => {
     historyEl.appendChild(createListElement(comment));
     });
   });
