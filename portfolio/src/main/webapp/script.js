@@ -95,9 +95,9 @@ async function getCommentSection() {
   });
 }
 
-/** Creates an <li> element containing text. */
+/** Creates an <p> element containing text. */
 function createListElement(text) {
-  const liElement = document.createElement('li');
+  const liElement = document.createElement('p');
   liElement.innerText = text;
   return liElement;
 }
