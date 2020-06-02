@@ -81,10 +81,10 @@ function hasWon(){
     }
 }
 
-async function getHello() {
+async function getComments() {
   const response = await fetch('/data');
-  const hello = await response.text();
-  document.getElementById('hello-container').innerText = hello;
+  const comments = await response.text();
+  document.getElementById('comments-container').innerText = comments;
 }
 
 /**
