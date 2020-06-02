@@ -18,6 +18,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import com.google.gson.Gson;
 import java.io.IOException;
+import com.google.appengine.api.datastore.DatastoreService;
+import com.google.appengine.api.datastore.DatastoreServiceFactory;
+import com.google.appengine.api.datastore.Entity;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -43,6 +46,14 @@ public class DataServlet extends HttpServlet {
     String comment = request.getParameter("text-input");
 	
     comments.add(comment);
+
+	Entity taskEntity = new Entity("Comment");
+    taskEntity.setProperty("words", comment);
+
+    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+    datastore.put(taskEntity);
+
+
 	response.sendRedirect("/index.html");
   }
 
