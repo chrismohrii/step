@@ -40,10 +40,20 @@ public class DataServlet extends HttpServlet {
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     PreparedQuery results = datastore.prepare(query);
 
+    int maxComments = Integer.parseInt(request.getParameter("maxComments"));		
+    System.out.println(maxComments);
+
     List<String> comments = new ArrayList<>();
+		int currComments = 0;
     for (Entity entity : results.asIterable()) {
-      String words = (String) entity.getProperty("words");
-      comments.add(words);
+			if (currComments < maxComments) {
+        String words = (String) entity.getProperty("words");
+        comments.add(words);
+				currComments++;
+			}
+			else {
+				break;
+			}  				
     }
 
     Gson gson = new Gson();
