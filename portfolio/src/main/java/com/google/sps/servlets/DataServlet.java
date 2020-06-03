@@ -45,12 +45,12 @@ public class DataServlet extends HttpServlet {
     
     // Get desired number of comments.		
     List<String> comments = new ArrayList<>();
-    int currComments = 0;
+    int numComments = 0;
     for (Entity entity : results.asIterable()) {
-      if (currComments < maxComments) {
+      if (numComments < maxComments) {
         String words = (String) entity.getProperty("words");
         comments.add(words);
-        currComments++;
+        numComments++;
       }
       else {
         break;
@@ -81,12 +81,4 @@ public class DataServlet extends HttpServlet {
     response.sendRedirect("/index.html");
   }
 
-   /**
-   * Converts an ArrayList into a JSON string using the Gson library. 
-   */
-  private String convertToJsonUsingGson(ArrayList list) {
-    Gson gson = new Gson();
-    String json = gson.toJson(list);
-    return json;
-  }
 }

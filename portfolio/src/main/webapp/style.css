@@ -21,6 +21,14 @@
   margin-top: 35px;
 }
 
+.margin-bottom {
+  margin-bottom: 20px;
+}
+
+.padding-bottom {
+  padding-bottom: 35px;
+}
+
 .peach {
   background-color: antiquewhite;
 }
