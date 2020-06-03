@@ -104,10 +104,23 @@
         <h1>Comments</h1>
 
         <form action="/data" method="POST">
-          Enter a comment!<br/>
+          Enter a comment!
+          <br/>
           <textarea name="text-input" class="form-control" id="exampleFormControlTextarea1" rows="3">comment...</textarea>
           <br/><br/>
           <input type="submit" class="btn btn-outline-primary margin-bottom"/>
+					<br/><br/>
+          <div class="form-group">
+            <label for="exampleFormControlSelect1">Select the nummer of desired visible comments</label>
+            <select class="form-control" id="exampleFormControlSelect1" onchange="getCommentSection()">
+              <option>2</option>
+              <option>4</option>
+              <option>6</option>
+              <option>8</option>
+              <option>10</option>
+            </select>
+          </div>
+					<br/>
 					<ul id="history"></ul>
         </form>
 			

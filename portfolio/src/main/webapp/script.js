@@ -85,9 +85,20 @@ function hasWon(){
  * Fetches the current state of the game and builds the UI.
  */
 async function getCommentSection() {
-  fetch('/data?maxComments=5').then(response => response.json()).then((comments) => {
+  // Clear history of comments. 
+  const history = document.getElementById('history');
+  while(history.firstChild) {
+    history.removeChild(history.firstChild);
+  }
 
-    // Build the list of history entries.
+	// Get user's desired number of comments. 
+	var selectedMaxComments = document.getElementById('exampleFormControlSelect1').value;
+  var url = '/data?maxComments=' + selectedMaxComments;
+  
+	// Populate the comment section again. 
+	fetch(url).then(response => response.json()).then((comments) => {
+
+    // Build the list of entries.
     const historyEl = document.getElementById('history');
     comments.forEach((comment) => {
     historyEl.appendChild(createListElement(comment));
