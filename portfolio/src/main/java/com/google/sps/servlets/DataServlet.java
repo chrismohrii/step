@@ -43,16 +43,16 @@ public class DataServlet extends HttpServlet {
     int maxComments = Integer.parseInt(request.getParameter("maxComments"));		
 
     List<String> comments = new ArrayList<>();
-		int currComments = 0;
+    int currComments = 0;
     for (Entity entity : results.asIterable()) {
-			if (currComments < maxComments) {
+      if (currComments < maxComments) {
         String words = (String) entity.getProperty("words");
         comments.add(words);
-				currComments++;
-			}
-			else {
-				break;
-			}  				
+        currComments++;
+      }
+      else {
+        break;
+      }  				
     }
 
     Gson gson = new Gson();

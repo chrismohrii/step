@@ -91,12 +91,12 @@ async function getCommentSection() {
     history.removeChild(history.firstChild);
   }
 
-	// Get user's desired number of comments. 
-	var selectedMaxComments = document.getElementById('exampleFormControlSelect1').value;
+  // Get user's desired number of comments. 
+  var selectedMaxComments = document.getElementById('exampleFormControlSelect1').value;
   var url = '/data?maxComments=' + selectedMaxComments;
   
-	// Populate the comment section again. 
-	fetch(url).then(response => response.json()).then((comments) => {
+  // Populate the comment section again. 
+  fetch(url).then(response => response.json()).then((comments) => {
 
     // Build the list of entries.
     comments.forEach((comment) => {
