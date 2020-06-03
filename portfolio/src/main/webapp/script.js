@@ -100,14 +100,20 @@ async function getCommentSection() {
 
     // Build the list of entries.
     comments.forEach((comment) => {
-    history.appendChild(createListElement(comment));
+    history.appendChild(createPElement(comment));
     });
   });
 }
 
 /** Creates an <p> element containing text. */
-function createListElement(text) {
-  const liElement = document.createElement('p');
-  liElement.innerText = text;
-  return liElement;
+function createPElement(text) {
+  const pElement = document.createElement('p');
+  pElement.innerText = text;
+  return pElement;
+}
+
+/** Deletes all comments in the comments section */
+async function deleteComments() {
+  const del = await fetch('/delete-data', {method: 'POST'});
+	getCommentSection();
 }

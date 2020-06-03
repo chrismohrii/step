@@ -13,7 +13,6 @@
 
 <body  onload="getCommentSection()">
   <div class:"container-fluid">
-
     <div>
       <div class="collapse" id="navbarToggleExternalContent">
         <div class="bg-dark p-4">
@@ -32,7 +31,6 @@
         </nav>
       </div>
     </div>  
-
     <div class="row peach">
       <div class="col-3">
       </div>
@@ -42,19 +40,16 @@
         currently a STEP intern at Google. This is my portfolio.
       </div>
     </div>
-
     <div class="row peach">
       <div class="col center-text">
         <img src="images.html/googlepicture.jpg" alt="Picture of Chris" style="width:7cm;height:7cm;">
       </div>
     </div>
-
     <div class="row peach">
       <div class="col center-text">
         Below are some cool links
       </div>
     </div>
-
     <div class="row peach">
       <div class="col center-text">
         <a class="image-link" href="https://www.linkedin.com/in/christopher-mohri-3429841a0/">
@@ -68,13 +63,11 @@
         </a> 
       </div>
     </div> 
-
     <div class="row peach">
       <div class="col center-text">
         Click on these buttons for random messages 
       </div>
     </div>
-
     <div class="row peach">
       <div class="col-3">
       </div>
@@ -88,7 +81,6 @@
       </div>
       <br><br><br>
     </div>
-
     <div class="row peach">
       <div class="col-2">
       </div>
@@ -96,52 +88,41 @@
         <hr>
       </div>
     </div>
-
     <div class="row peach">
       <div class="col-3">
       </div>
       <div class="col-6 center-text">
         <h1>Comments</h1>
-
+        Enter a comment!
+        <br/>
         <form action="/data" method="POST">
-          Enter a comment!
-          <br/>
           <textarea name="text-input" class="form-control" id="exampleFormControlTextarea1" rows="3">comment...</textarea>
           <br/><br/>
-          <input type="submit" class="btn btn-outline-primary margin-bottom"/>
+          <input type="submit" class="btn btn-outline-primary margin-bottom" value="Submit comment"/>
           <br/><br/>
           <div class="form-group">
-            <label for="exampleFormControlSelect1">Select the nummer of desired visible comments</label>
+            <label for="exampleFormControlSelect1">Select nummer of visible comments</label>
             <select class="form-control" id="exampleFormControlSelect1" onchange="getCommentSection()">
-              <option>2</option>
-              <option>4</option>
-              <option>6</option>
-              <option>8</option>
+              <option>5</option>
               <option>10</option>
+              <option>15</option>
             </select>
           </div>
-          <br/>
-          <ul id="history"></ul>
         </form>
-			
+			  <input type="submit" class="btn btn-outline-primary margin-bottom" value="Delete all comments" onclick="deleteComments()"/>				
+        <br/>
+        <ul id="history"></ul>
       </div>
     </div>
-
     <div class="row bg-dark text-light footer">
       <div class="col center-text">
         Contact<br><br>chrismohri@google.com<br>ccm244@cornell.edu<br><br>
       </div>
-    </div>
-		
+    </div>		
   </div>
 </div>
-
-  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-    crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-    crossorigin="anonymous"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-    crossorigin="anonymous"></script>
-
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"crossorigin="anonymous"></script>
 </body>
 </html>

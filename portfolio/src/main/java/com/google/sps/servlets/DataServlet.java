@@ -36,12 +36,14 @@ public class DataServlet extends HttpServlet {
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    // Prepare query.	 
     Query query = new Query("Comment").addSort("timestamp", SortDirection.DESCENDING);
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     PreparedQuery results = datastore.prepare(query);
 
     int maxComments = Integer.parseInt(request.getParameter("maxComments"));		
-
+    
+    // Get desired number of comments.		
     List<String> comments = new ArrayList<>();
     int currComments = 0;
     for (Entity entity : results.asIterable()) {
@@ -56,7 +58,6 @@ public class DataServlet extends HttpServlet {
     }
 
     Gson gson = new Gson();
-
     response.setContentType("application/json;");
     response.getWriter().println(gson.toJson(comments));
   }
@@ -67,11 +68,13 @@ public class DataServlet extends HttpServlet {
     // Get the input from the form.
     String comment = request.getParameter("text-input");
     long timestamp = System.currentTimeMillis();
-  
+    
+    // Create new Entity
     Entity taskEntity = new Entity("Comment");
     taskEntity.setProperty("words", comment);
     taskEntity.setProperty("timestamp", timestamp);
 
+    // Add it to Datastore 
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     datastore.put(taskEntity);
 
