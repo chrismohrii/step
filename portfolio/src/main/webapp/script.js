@@ -115,5 +115,5 @@ function createPElement(text) {
 /** Deletes all comments in the comments section */
 async function deleteComments() {
   const del = await fetch('/delete-data', {method: 'POST'});
-	getCommentSection();
+  getCommentSection();
 }
