@@ -99,9 +99,8 @@ async function getCommentSection() {
 	fetch(url).then(response => response.json()).then((comments) => {
 
     // Build the list of entries.
-    const historyEl = document.getElementById('history');
     comments.forEach((comment) => {
-    historyEl.appendChild(createListElement(comment));
+    history.appendChild(createListElement(comment));
     });
   });
 }
