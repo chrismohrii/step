@@ -105,15 +105,27 @@ async function getCommentSection() {
   });
 }
 
-/** Creates an <p> element containing text. */
+/** Creates a comment element. */
 function createCommentElement(comment) {
   const commentElement = document.createElement('li');
   commentElement.className = 'comment';
 
-  const textElement = document.createElement('p');
+  const textElement = document.createElement('span');
   textElement.innerText = comment.name + ": " + comment.words;
 
+  const deleteButtonElement = document.createElement('button');
+  deleteButtonElement.className = 'btn btn-outline-primary';
+  deleteButtonElement.innerText = 'Delete';
+  deleteButtonElement.addEventListener('click', () => {
+    deleteSpecificComment(comment);
+
+    // Remove the comment from the DOM.
+    commentElement.remove();
+  });	
+
   commentElement.appendChild(textElement);
+  commentElement.appendChild(deleteButtonElement);
+
   return commentElement;
 }
 
@@ -121,4 +133,11 @@ function createCommentElement(comment) {
 async function deleteComments() {
   const del = await fetch('/delete-data', {method: 'POST'});
   getCommentSection();
+}
+
+/** Tells the server to delete the specific comment. */
+function deleteSpecificComment(comment) {
+  const params = new URLSearchParams();
+  params.append('id', comment.id);
+  fetch('/delete-given-comment', {method: 'POST', body: params});
 }

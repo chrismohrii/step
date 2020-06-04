@@ -20,10 +20,13 @@ public final class Comment {
   private final String name;
   private final String words;
   private final long timestamp;
+  private final long id;
 
-  public Comment(String name, String words, long timestamp) {
+
+  public Comment(String name, String words, long timestamp, long id) {
     this.name = name;
     this.words = words;
     this.timestamp = timestamp;
+    this.id = id;
   }
 }
