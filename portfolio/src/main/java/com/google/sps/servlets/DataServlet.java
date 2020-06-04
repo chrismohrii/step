@@ -46,9 +46,8 @@ public class DataServlet extends HttpServlet {
     
     // Get desired number of comments.		
     List<Comment> comments = new ArrayList<>();
-    int numComments = 0;
     for (Entity entity : results.asIterable()) {
-      if (numComments < maxComments) {
+      if (comments.size() < maxComments) {
         String name = (String) entity.getProperty("name");
         String words = (String) entity.getProperty("words");
         long timestamp = (long) entity.getProperty("timestamp");
@@ -56,7 +55,6 @@ public class DataServlet extends HttpServlet {
 
         Comment comment = new Comment(name, words, timestamp, id);
         comments.add(comment);
-        numComments++;
       }
       else {
         break;
