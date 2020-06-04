@@ -87,10 +87,8 @@ function hasWon(){
 async function getCommentSection() {
   // Clear history of comments. 
   const history = document.getElementById('history');
-  while (history.firstChild) {
-    history.removeChild(history.firstChild);
-  }
-
+  history.innerHTML = '';
+ 	
   // Get user's desired number of comments. 
   const selectedMaxComments = document.getElementById('exampleFormControlSelect1').value;
   const url = '/data?maxComments=' + selectedMaxComments;

@@ -45,12 +45,10 @@ public class DataServlet extends HttpServlet {
     
     // Get desired number of comments.		
     List<String> comments = new ArrayList<>();
-    int numComments = 0;
     for (Entity entity : results.asIterable()) {
-      if (numComments < maxComments) {
+      if (comments.size() < maxComments) {
         String words = (String) entity.getProperty("words");
         comments.add(words);
-        numComments++;
       }
       else {
         break;
