@@ -47,3 +47,18 @@ h1 {
   max-height: 5000px !important;
   background-color: antiquewhite;
 }
+
+#comment-list {
+  list-style-type: none;
+}
+
+.comment {
+  border: thin solid lightskyblue;
+  display: flex;
+  margin: 10px;
+  padding: 10px;
+}
+
+.comment span {
+  flex-grow: 1;
+}

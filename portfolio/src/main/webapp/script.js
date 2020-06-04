@@ -100,16 +100,21 @@ async function getCommentSection() {
 
     // Build the list of entries.
     comments.forEach((comment) => {
-    history.appendChild(createPElement(comment));
+    history.appendChild(createCommentElement(comment));
     });
   });
 }
 
 /** Creates an <p> element containing text. */
-function createPElement(text) {
-  const pElement = document.createElement('p');
-  pElement.innerText = text;
-  return pElement;
+function createCommentElement(comment) {
+  const commentElement = document.createElement('li');
+  commentElement.className = 'comment';
+
+  const textElement = document.createElement('p');
+  textElement.innerText = comment.name + ": " + comment.words;
+
+  commentElement.appendChild(textElement);
+  return commentElement;
 }
 
 /** Deletes all comments in the comments section */
