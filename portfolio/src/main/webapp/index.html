@@ -11,17 +11,16 @@
   <script src="script.js"></script>
 </head>
 
-<body>
+<body  onload="getCommentSection()">
   <div class:"container-fluid">
-
     <div>
       <div class="collapse" id="navbarToggleExternalContent">
         <div class="bg-dark p-4">
           <h5 class="text-white h4">Menu</h5><br>
-          <a href="index.html" class="btn btn-outline-light" role="dark">Home</a><br><br>
-          <a href="pictures.html" class="btn btn-outline-light" role="dark">Pictures</a><br><br>
-          <a href="hobbies.html" class="btn btn-outline-light" role="dark">Hobbies</a><br><br>
-          <a href="resume.html" class="btn btn-outline-light" role="dark">Resume</a><br>
+          <a href="index.html" class="btn btn-outline-light menu-links" role="dark">Home</a><br>
+          <a href="pictures.html" class="btn btn-outline-light menu-links" role="dark">Pictures</a><br>
+          <a href="hobbies.html" class="btn btn-outline-light menu-links" role="dark">Hobbies</a><br>
+          <a href="resume.html" class="btn btn-outline-light menu-links" role="dark">Resume</a>
         </div>
       </div>
       <div class:"col">
@@ -32,7 +31,6 @@
         </nav>
       </div>
     </div>  
-
     <div class="row peach">
       <div class="col-3">
       </div>
@@ -42,74 +40,95 @@
         currently a STEP intern at Google. This is my portfolio.
       </div>
     </div>
-
     <div class="row peach">
       <div class="col center-text">
         <img src="images.html/googlepicture.jpg" alt="Picture of Chris" style="width:7cm;height:7cm;">
       </div>
     </div>
-  </div>
-
-  <div class="row peach">
-    <div class="col center-text">
-      Below are some cool links
+    <div class="row peach">
+      <div class="col center-text">
+        Below are some cool links
+      </div>
     </div>
-  </div>
-
-  <div class="row peach">
-    <div class="col center-text">
-      <a class="image-link" href="https://www.linkedin.com/in/christopher-mohri-3429841a0/">
-      <img alt="LinkedIn Profile" src="images.html/linkedinlogo3.png" style="width:4cm;height:4cm;">
-      </a>  
-      <a class="image-link" href="https://github.com/chrismohrii">
-      <img alt="GitHub Profile" src="images.html/githubtransparent.png" style="width:3cm;height:3cm;">
-      </a>
-      <a class="image-link" href="https://www.tennisrecruiting.net/player.asp?id=848956">
-      <img alt="Tennisrecruiting Profile" src="images.html/tennisball2.png" style="width:3.7cm;height:3cm;">
-      </a> 
+    <div class="row peach">
+      <div class="col center-text">
+        <a class="image-link" href="https://www.linkedin.com/in/christopher-mohri-3429841a0/">
+          <img alt="LinkedIn Profile" src="images.html/linkedinlogo3.png" style="width:4cm;height:4cm;">
+        </a>  
+        <a class="image-link" href="https://github.com/chrismohrii">
+          <img alt="GitHub Profile" src="images.html/githubtransparent.png" style="width:3cm;height:3cm;">
+        </a>
+        <a class="image-link" href="https://www.tennisrecruiting.net/player.asp?id=848956">
+          <img alt="Tennisrecruiting Profile" src="images.html/tennisball2.png" style="width:3.7cm;height:3cm;">
+        </a> 
+      </div>
+    </div> 
+    <div class="row peach">
+      <div class="col center-text">
+        Click on these buttons for random messages 
+      </div>
     </div>
-  </div> 
-
-  <div class="row peach">
-    <div class="col center-text">
-      Click on these buttons for random messages 
+    <div class="row peach padding-bottom">
+      <div class="col-3">
+      </div>
+      <div class="col-3 right-text">
+        <button class="btn btn-outline-primary" onclick="addRandomGreeting()">Hello</button>
+        <div id="greeting-container"></div>
+      </div>
+      <div class="col-3 left-text">
+        <button class="btn btn-outline-primary" onclick="addRandomFunFact()">Fun Fact</button>
+        <div id="fact-container"></div> 
+      </div>
     </div>
-  </div>
-
-  <div class="row peach">
-    <div class="col-3">
+    <div class="row peach">
+      <div class="col-2">
+      </div>
+      <div class="col-8">
+        <hr>
+      </div>
     </div>
-    <div class="col-3 right-text">
-      <button class="btn btn-outline-primary" onclick="addRandomGreeting()">Hello</button>
-      <div id="greeting-container"></div>
+    <div class="row peach">
+      <div class="col-3">
+      </div>
+      <div class="col-6 center-text margin-bottom">
+        <h1>Comments</h1>
+        Enter a comment!
+      </div>
     </div>
-    <div class="col-3 left-text">
-      <button class="btn btn-outline-primary" onclick="addRandomFunFact()">Fun Fact <br></button>
-      <div id="fact-container"></div> 
+    <div class="row peach">
+      <div class="col-3">
+      </div>
+      <div class="col-6 center-text margin-bottom">
+        <form action="/data" method="POST">
+          <textarea name="text-input" class="form-control" id="exampleFormControlTextarea1" rows="3">comment...</textarea>
+          <input type="submit" class="btn btn-outline-primary" value="Submit comment" style="margin-top: 20px; margin-bottom:30px;"/>
+          <hr>
+          <div class="form-group">
+            <label for="exampleFormControlSelect1">Select nummer of visible comments</label>
+            <select class="form-control" id="exampleFormControlSelect1" onchange="getCommentSection()">
+              <option>5</option>
+              <option>10</option>
+              <option>15</option>
+            </select>
+          </div>
+        </form>
+        <input type="submit" class="btn btn-outline-primary" value="Delete all comments" onclick="deleteComments()" style="margin-bottom: 40px"/>				
+        <ul id="history"></ul>
+      </div>
     </div>
-    <br><br><br>
-  </div>
-
-  <div class="row peach">
-	<div class="col center-text">
-      <button class="btn btn-outline-primary" onclick="getHello()">Fetch the hello!</button>
-      <div id="hello-container"></div>
-	</div>
-  </div>
-
-  <div class="row bg-dark text-light footer">
-    <div class="col center-text">
-      Contact<br><br>chrismohri@google.com<br>ccm244@cornell.edu<br><br>
-    </div>
+    <div class="row bg-dark text-light footer">
+      <div class="col center-text padding-bottom">
+        <div class="contact-footer">
+          Contact
+        </div>
+        chrismohri@google.com<br>
+        ccm244@cornell.edu
+      </div>
+    </div>		
   </div>
 </div>
-
-  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-    crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-    crossorigin="anonymous"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-    crossorigin="anonymous"></script>
-
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"crossorigin="anonymous"></script>
 </body>
 </html>

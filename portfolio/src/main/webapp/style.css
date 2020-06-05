@@ -21,6 +21,18 @@
   margin-top: 35px;
 }
 
+.menu-links {
+  margin-bottom: 20px;
+}
+
+.contact-footer {
+  margin-bottom: 15px;
+}
+
+.padding-bottom {
+  padding-bottom: 35px;
+}
+
 .peach {
   background-color: antiquewhite;
 }
@@ -35,7 +47,7 @@ h1 {
 }
 
 .carousel-inner {
-  width:100%;
+  width: 100%;
   max-height: 5000px !important;
   background-color: antiquewhite;
 }

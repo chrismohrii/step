@@ -81,8 +81,37 @@ function hasWon(){
     }
 }
 
-async function getHello() {
-  const response = await fetch('/data');
-  const hello = await response.text();
-  document.getElementById('hello-container').innerText = hello;
+/**
+ * Fetches the current state of the game and builds the UI.
+ */
+async function getCommentSection() {
+  // Clear history of comments. 
+  const history = document.getElementById('history');
+  history.innerHTML = '';
+ 	
+  // Get user's desired number of comments. 
+  const selectedMaxComments = document.getElementById('exampleFormControlSelect1').value;
+  const url = '/data?maxComments=' + selectedMaxComments;
+  
+  // Populate the comment section again. 
+  fetch(url).then(response => response.json()).then((comments) => {
+
+    // Build the list of entries.
+    comments.forEach((comment) => {
+    history.appendChild(createPElement(comment));
+    });
+  });
+}
+
+/** Creates an <p> element containing text. */
+function createPElement(text) {
+  const pElement = document.createElement('p');
+  pElement.innerText = text;
+  return pElement;
+}
+
+/** Deletes all comments in the comments section */
+async function deleteComments() {
+  const del = await fetch('/delete-data', {method: 'POST'});
+  getCommentSection();
 }
