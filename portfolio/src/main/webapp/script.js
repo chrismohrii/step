@@ -253,6 +253,40 @@ async function createMap() {
       }]
     }
   );
+
+  const iconImage = 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png';
+ 
+  const markerDorm = new google.maps.Marker({
+    map: maps,
+    animation: google.maps.Animation.DROP,
+    position: {lat: 42.4550, lng: -76.4777},
+    title: "Freshman year dorm",
+    icon: iconImage
+  });
+
+  const markerLibrary = new google.maps.Marker({
+    map: maps,
+    animation: google.maps.Animation.DROP,
+    position: {lat: 42.4477, lng: -76.4853},
+    title: "Favorite library",
+    icon: iconImage
+  });
+
+	const markerDining = new google.maps.Marker({
+    map: maps,
+    animation: google.maps.Animation.DROP,
+    position: {lat: 42.4462, lng: -76.4823},
+    title: "Favorite dining hall",
+    icon: iconImage
+  });
+  
+  const markerGym = new google.maps.Marker({
+    map: maps,
+    animation: google.maps.Animation.DROP,
+    position: {lat: 42.4529, lng: -76.4774},
+    title: "Favorite gym",
+    icon: iconImage
+  });
 }
 
 function start() {
