@@ -13,6 +13,14 @@
 // limitations under the License.
 
 /**
+ * Calls the methods that load the home page.
+ */
+  function start() {
+  getCommentSection();
+	createMap();
+}
+
+/**
  * Adds a random greeting to the page.
  */
 function addRandomGreeting() {
@@ -254,42 +262,26 @@ async function createMap() {
     }
   );
 
-  const iconImage = 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png';
+  const iconBeachFlag = 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png';
  
-  const markerDorm = new google.maps.Marker({
-    map: maps,
-    animation: google.maps.Animation.DROP,
-    position: {lat: 42.4550, lng: -76.4777},
-    title: "Freshman year dorm",
-    icon: iconImage
-  });
-
-  const markerLibrary = new google.maps.Marker({
-    map: maps,
-    animation: google.maps.Animation.DROP,
-    position: {lat: 42.4477, lng: -76.4853},
-    title: "Favorite library",
-    icon: iconImage
-  });
-
-	const markerDining = new google.maps.Marker({
-    map: maps,
-    animation: google.maps.Animation.DROP,
-    position: {lat: 42.4462, lng: -76.4823},
-    title: "Favorite dining hall",
-    icon: iconImage
-  });
-  
-  const markerGym = new google.maps.Marker({
-    map: maps,
-    animation: google.maps.Animation.DROP,
-    position: {lat: 42.4529, lng: -76.4774},
-    title: "Favorite gym",
-    icon: iconImage
-  });
+  addMarker(maps, {lat: 42.4550, lng: -76.4777}, "Freshman year dorm", iconBeachFlag, "Mary Donlon Hall. Chris lived on the fourth floor in a quad.")
+  addMarker(maps, {lat: 42.4477, lng: -76.4853}, "Favorite library", iconBeachFlag, "The underground is called the Cocktail lounge.")
+  addMarker(maps, {lat: 42.4462, lng: -76.4823}, "Favorite dining hall", iconBeachFlag, "Has best food");
+  addMarker(maps, {lat: 42.4529, lng: -76.4774}, "Favorite gym", iconBeachFlag, "Has gym, basketball courts, and swimming pool.");
 }
 
-function start() {
-  getCommentSection();
-	createMap();
+/** Creates a marker given a map, coordinates, description, and icon. */
+function addMarker(maps, coordinates, titles, iconSource, description){
+  const marker = new google.maps.Marker({
+    map: maps,
+    animation: google.maps.Animation.DROP,
+    position: coordinates,
+    title: titles,
+    icon: iconSource
+  });
+
+  const infoWindow = new google.maps.InfoWindow({content: description});
+  marker.addListener('click', () => {
+    infoWindow.open(map, marker);
+  });	
 }
