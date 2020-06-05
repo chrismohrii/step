@@ -65,7 +65,6 @@ public class DataServlet extends HttpServlet {
     response.setContentType("application/json;");
     response.getWriter().println(gson.toJson(comments));
   }
-
   
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -76,9 +75,9 @@ public class DataServlet extends HttpServlet {
     
     // Create new Entity
     Entity taskEntity = new Entity("Comment");
+    taskEntity.setProperty("name", name);		
     taskEntity.setProperty("words", comment);
     taskEntity.setProperty("timestamp", timestamp);
-    taskEntity.setProperty("name", name);		
 
     // Add it to Datastore 
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();

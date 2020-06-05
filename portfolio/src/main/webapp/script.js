@@ -41,8 +41,6 @@ function addRandomFunFact(){
   // Add it to the page.
   const factContainer = document.getElementById('fact-container');
   factContainer.innerText = fact;
-    
-
 }
 
 /**
@@ -60,7 +58,6 @@ function addRandomNumber(container){
   const numberContainer = document.getElementById(container);
   numberContainer.innerText = number;
   hasWon();
-    
 }
 
 /*
@@ -139,3 +136,4 @@ function deleteSpecificComment(comment) {
   params.append('id', comment.id);
   fetch('/delete-given-comment', {method: 'POST', body: params});
 }
+
