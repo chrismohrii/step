@@ -65,9 +65,9 @@ function addRandomNumber(container){
 */
 function hasWon(){
   const winBox = document.getElementById('win-container');
-  var firstNumber = document.getElementById('number1-container').innerText;
-  var secondNumber = document.getElementById('number2-container').innerText;
-  var thirdNumber = document.getElementById('number3-container').innerText;
+  const firstNumber = document.getElementById('number1-container').innerText;
+  const secondNumber = document.getElementById('number2-container').innerText;
+  const thirdNumber = document.getElementById('number3-container').innerText;
 
   // Compare the numbers for appropriate message. 
   if (firstNumber === secondNumber && firstNumber == thirdNumber){
@@ -136,4 +136,3 @@ function deleteSpecificComment(comment) {
   params.append('id', comment.id);
   fetch('/delete-given-comment', {method: 'POST', body: params});
 }
-

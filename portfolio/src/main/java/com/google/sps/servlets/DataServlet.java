@@ -69,8 +69,8 @@ public class DataServlet extends HttpServlet {
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
     // Get the input from the form.
-    String name = request.getParameter("name-input");
-    String comment = request.getParameter("text-input");
+    String name = request.getParameter("name");
+    String comment = request.getParameter("text");
     long timestamp = System.currentTimeMillis();
     
     // Create new Entity
