@@ -41,8 +41,6 @@ function addRandomFunFact(){
   // Add it to the page.
   const factContainer = document.getElementById('fact-container');
   factContainer.innerText = fact;
-    
-
 }
 
 /**
@@ -60,7 +58,6 @@ function addRandomNumber(container){
   const numberContainer = document.getElementById(container);
   numberContainer.innerText = number;
   hasWon();
-    
 }
 
 /*
@@ -88,7 +85,7 @@ async function getCommentSection() {
   // Clear history of comments. 
   const history = document.getElementById('history');
   history.innerHTML = '';
- 	
+
   // Get user's desired number of comments. 
   const selectedMaxComments = document.getElementById('exampleFormControlSelect1').value;
   const url = '/data?maxComments=' + selectedMaxComments;
@@ -98,16 +95,33 @@ async function getCommentSection() {
 
     // Build the list of entries.
     comments.forEach((comment) => {
-    history.appendChild(createPElement(comment));
+    history.appendChild(createCommentElement(comment));
     });
   });
 }
 
-/** Creates an <p> element containing text. */
-function createPElement(text) {
-  const pElement = document.createElement('p');
-  pElement.innerText = text;
-  return pElement;
+/** Creates a comment element. */
+function createCommentElement(comment) {
+  const commentElement = document.createElement('li');
+  commentElement.className = 'comment';
+
+  const textElement = document.createElement('span');
+  textElement.innerText = comment.name + ": " + comment.words;
+
+  const deleteButtonElement = document.createElement('button');
+  deleteButtonElement.className = 'btn btn-outline-primary';
+  deleteButtonElement.innerText = 'Delete';
+  deleteButtonElement.addEventListener('click', () => {
+    deleteSpecificComment(comment);
+
+    // Remove the comment from the DOM.
+    commentElement.remove();
+  });	
+
+  commentElement.appendChild(textElement);
+  commentElement.appendChild(deleteButtonElement);
+
+  return commentElement;
 }
 
 /** Deletes all comments in the comments section */
@@ -115,3 +129,11 @@ async function deleteComments() {
   const del = await fetch('/delete-data', {method: 'POST'});
   getCommentSection();
 }
+
+/** Tells the server to delete the specific comment. */
+function deleteSpecificComment(comment) {
+  const params = new URLSearchParams();
+  params.append('id', comment.id);
+  fetch('/delete-given-comment', {method: 'POST', body: params});
+}
+

@@ -17,6 +17,7 @@ package com.google.sps.servlets;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import com.google.sps.data.Comment;
 import com.google.gson.Gson;
 import java.io.IOException;
 import com.google.appengine.api.datastore.PreparedQuery;
@@ -44,11 +45,16 @@ public class DataServlet extends HttpServlet {
     int maxComments = Integer.parseInt(request.getParameter("maxComments"));		
     
     // Get desired number of comments.		
-    List<String> comments = new ArrayList<>();
+    List<Comment> comments = new ArrayList<>();
     for (Entity entity : results.asIterable()) {
       if (comments.size() < maxComments) {
+        String name = (String) entity.getProperty("name");
         String words = (String) entity.getProperty("words");
-        comments.add(words);
+        long timestamp = (long) entity.getProperty("timestamp");
+        long id = entity.getKey().getId();
+
+        Comment comment = new Comment(name, words, timestamp, id);
+        comments.add(comment);
       }
       else {
         break;
@@ -59,16 +65,17 @@ public class DataServlet extends HttpServlet {
     response.setContentType("application/json;");
     response.getWriter().println(gson.toJson(comments));
   }
-
   
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
     // Get the input from the form.
+    String name = request.getParameter("name-input");
     String comment = request.getParameter("text-input");
     long timestamp = System.currentTimeMillis();
     
     // Create new Entity
     Entity taskEntity = new Entity("Comment");
+    taskEntity.setProperty("name", name);		
     taskEntity.setProperty("words", comment);
     taskEntity.setProperty("timestamp", timestamp);
 
