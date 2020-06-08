@@ -67,3 +67,8 @@ h1 {
 .comment span {
   flex-grow: 1;
 }
+
+#map {
+  border: thin solid gray;
+  height: 700px;
+}
