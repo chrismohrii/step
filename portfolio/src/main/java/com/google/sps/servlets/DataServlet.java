@@ -65,25 +65,5 @@ public class DataServlet extends HttpServlet {
     response.setContentType("application/json;");
     response.getWriter().println(gson.toJson(comments));
   }
-  
-  @Override
-  public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    // Get the input from the form.
-    String name = request.getParameter("name");
-    String comment = request.getParameter("text");
-    long timestamp = System.currentTimeMillis();
-    
-    // Create new Entity
-    Entity taskEntity = new Entity("Comment");
-    taskEntity.setProperty("name", name);		
-    taskEntity.setProperty("words", comment);
-    taskEntity.setProperty("timestamp", timestamp);
-
-    // Add it to Datastore 
-    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
-    datastore.put(taskEntity);
-
-    response.sendRedirect("/index.html");
-  }
-
+	
 }

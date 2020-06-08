@@ -99,12 +99,10 @@
       <div class="col-3">
       </div>
       <div class="col-6 center-text margin-bottom">
-        <form action="/data" method="POST">
-          <textarea name="name" class="form-control" id="exampleFormControlTextarea1" rows="1">Name</textarea>				  
-          <textarea name="text" class="form-control" id="exampleFormControlTextarea1" rows="3">Comment...</textarea>
-          <input type="submit" class="btn btn-outline-primary" value="Submit comment" style="margin-top: 20px; margin-bottom:30px;"/>
-          <hr>
-        </form>
+        <textarea class="form-control" id="name" rows="1">Name</textarea>				  
+        <textarea class="form-control" id="text" rows="3">Comment...</textarea>
+        <input type="submit" class="btn btn-outline-primary" value="Submit comment" style="margin-top: 20px; margin-bottom:30px;" onclick="addComment()"/>
+        <hr>
         <div class="form-group">
           <label for="exampleFormControlSelect1">Select nummer of visible comments</label>
           <select class="form-control" id="exampleFormControlSelect1" onchange="getCommentSection()">
