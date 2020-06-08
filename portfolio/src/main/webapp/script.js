@@ -18,9 +18,9 @@ const iconBeachFlag = 'https://developers.google.com/maps/documentation/javascri
 /**
  * Calls the methods that load the home page.
  */
-  function start() {
+function start() {
   getCommentSection();
-	createMap();
+  createMap();
 }
 
 /**
