@@ -364,7 +364,7 @@ function drawVoteChart() {
       },
       width:800,
       height:700,
-      backgroundColor: '#FAEBD7'
+      backgroundColor: '#FAEBD7',
     };
 
     const chart = new google.visualization.ColumnChart(document.getElementById('vote-container'));
