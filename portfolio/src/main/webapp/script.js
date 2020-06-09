@@ -361,8 +361,8 @@ function drawVoteChart() {
       series: {
         0: { color: '#DC143C' }
       },
-      width:800,
-      height:700,
+      width: 800,
+      height: 700,
       backgroundColor: '#FAEBD7',
     };
 

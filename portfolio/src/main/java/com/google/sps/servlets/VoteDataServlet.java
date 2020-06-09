@@ -71,7 +71,8 @@ public class VoteDataServlet extends HttpServlet {
     boolean inDatastore = false;
     Entity foundEntity = null;
     for (Entity entity : results.asIterable()) {
-      if (page.equals((String) entity.getProperty("page"))) {
+      String entityPage = (String) entity.getProperty("page");
+      if (page.equals(entityPage)) {
         inDatastore = true;
         foundEntity = entity;
       } 
