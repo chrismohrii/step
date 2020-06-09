@@ -46,8 +46,8 @@ public class VoteDataServlet extends HttpServlet {
     Map<String, Integer> pageVotes = new HashMap<>(); 
     for (Entity entity : results.asIterable()) {
       String page = (String) entity.getProperty("page");
-      int currentVotes = pageVotes.containsKey(page) ? pageVotes.get(page) : 0;
-      pageVotes.put(page, currentVotes + 1);
+      Integer count = (int) (long) entity.getProperty("count");
+      pageVotes.put(page, count);
     }
 
     // Return the data
@@ -61,13 +61,34 @@ public class VoteDataServlet extends HttpServlet {
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
     // Get input from the URL
     String page = request.getParameter("userVote");
-
-    // Create new Entity
-    Entity voteEntity = new Entity("Vote");
-    voteEntity.setProperty("page", page);
-
-    // Add it to Datastore 
+ 
+    // Prepare query.	 
+    Query query = new Query("Vote");
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
-    datastore.put(voteEntity);
+    PreparedQuery results = datastore.prepare(query);
+
+    // Check if the page is in the query
+    boolean inDatastore = false;
+    Entity foundEntity = null;
+    for (Entity entity : results.asIterable()) {
+      if (page.equals((String) entity.getProperty("page"))) {
+        inDatastore = true;
+        foundEntity = entity;
+      } 
+    }
+
+    if (inDatastore) {
+      // If yes, increment count by 1
+      long currentVotes = (Long) foundEntity.getProperty("count");
+      foundEntity.setProperty("count", currentVotes + 1);
+      datastore.put(foundEntity);
+    }
+    else {
+      // If not, create new entity			
+      Entity voteEntity = new Entity("Vote");
+      voteEntity.setProperty("page", page);
+      voteEntity.setProperty("count", 1);
+      datastore.put(voteEntity);
+    }
   }
 }
