@@ -122,7 +122,7 @@ const mapStyle = [
     elementType: 'labels.text.fill',
     stylers: [{color: '#92998d'}]
   }];
-  tempData = [
+  const tempData = [
     ['January',  34, 19],
     ['February', 37, 20],
     ['March', 45, 27],
@@ -360,7 +360,7 @@ function drawVoteChart() {
     const options = {
       title: 'Favorite Page on Website',
       series: {
-      0: { color: '#DC143C' },
+        0: { color: '#DC143C' }
       },
       width:800,
       height:700,
