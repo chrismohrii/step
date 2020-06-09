@@ -312,7 +312,7 @@ function addMarker(map, coordinates, title, icon, description){
   });	
 }
 
-google.charts.load('current', {'packages':['line']});
+google.charts.load('current', {'packages':['line', 'corechart']});
 google.charts.setOnLoadCallback(drawTemperatureChart);
 
 /** Draws the Ithaca average monthly temperature chart. */
@@ -343,7 +343,6 @@ function drawTemperatureChart() {
   chart.draw(data, google.charts.Line.convertOptions(options));
 }
 
-google.charts.load('current', {'packages':['corechart']});
 google.charts.setOnLoadCallback(drawVoteChart);
 
 /** Fetches page vote data and uses it to create a chart. */
@@ -377,6 +376,6 @@ async function addNewVote() {
   const userVote = document.getElementById('user-vote').value;
   const params = new URLSearchParams();
   params.append('userVote', userVote);
-  const add = await fetch('vote-data', {method: 'POST', body: params});
+  const add = await fetch('/vote-data', {method: 'POST', body: params});
   drawVoteChart();
 }
