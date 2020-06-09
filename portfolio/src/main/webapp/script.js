@@ -339,7 +339,7 @@ function drawTemperatureChart() {
     height: 500
   };
 
-  var chart = new google.charts.Line(document.getElementById('chart-container'));
+  var chart = new google.charts.Line(document.getElementById('weather-chart-container'));
   chart.draw(data, google.charts.Line.convertOptions(options));
 }
 
@@ -359,11 +359,11 @@ function drawVoteChart() {
 
     const options = {
       title: 'Favorite Page on Website',
-			series: {
+      series: {
       0: { color: '#DC143C' },
       },
-      width:600,
-      height:500,
+      width:800,
+      height:700,
       backgroundColor: '#FAEBD7'
     };
 
@@ -372,6 +372,7 @@ function drawVoteChart() {
   });
 }
 
+/** Adds a new vote to the chart showing users' favorite pages of the website. */
 async function addNewVote() {
   const userVote = document.getElementById('user-vote').value;
   const params = new URLSearchParams();
