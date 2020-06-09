@@ -256,6 +256,17 @@ function deleteSpecificComment(comment) {
   fetch('/delete-given-comment', {method: 'POST', body: params});
 }
 
+/** Tells the server to add a comment. */
+async function addComment() {
+  const params = new URLSearchParams();
+  const name = document.getElementById('name').innerHTML;
+  const text = document.getElementById('text').innerHTML;
+  params.append('name', name);
+  params.append('text', text)	
+  const add = await fetch('add-comment', {method: 'POST', body: params});
+  getCommentSection();
+}
+
 /** Creates a map and adds it to the page. */
 async function createMap() {
   const map = new google.maps.Map(document.getElementById('map'), {
