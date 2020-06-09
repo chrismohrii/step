@@ -277,7 +277,7 @@ async function addComment() {
   const text = document.getElementById('text').innerHTML;
   params.append('name', name);
   params.append('text', text)	
-  const add = await fetch('add-comment', {method: 'POST', body: params});
+  await fetch('add-comment', {method: 'POST', body: params});
   getCommentSection();
 }
 
@@ -318,7 +318,7 @@ google.charts.setOnLoadCallback(drawTemperatureChart);
 /** Draws the Ithaca average monthly temperature chart. */
 function drawTemperatureChart() {
 
-  var data = new google.visualization.DataTable();
+  const data = new google.visualization.DataTable();
   data.addColumn('string', 'Month');
   data.addColumn('number', 'High');
   data.addColumn('number', 'Low');
@@ -339,7 +339,7 @@ function drawTemperatureChart() {
     height: 500
   };
 
-  var chart = new google.charts.Line(document.getElementById('weather-chart-container'));
+  const chart = new google.charts.Line(document.getElementById('weather-chart-container'));
   chart.draw(data, google.charts.Line.convertOptions(options));
 }
 
@@ -376,6 +376,6 @@ async function addNewVote() {
   const userVote = document.getElementById('user-vote').value;
   const params = new URLSearchParams();
   params.append('userVote', userVote);
-  const add = await fetch('/vote-data', {method: 'POST', body: params});
+  await fetch('/vote-data', {method: 'POST', body: params});
   drawVoteChart();
 }
