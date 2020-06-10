@@ -121,7 +121,21 @@ const mapStyle = [
     featureType: 'water',
     elementType: 'labels.text.fill',
     stylers: [{color: '#92998d'}]
-  }]
+  }];
+  const tempData = [
+    ['January',  34, 19],
+    ['February', 37, 20],
+    ['March', 45, 27],
+    ['April', 59, 38],
+    ['May', 71, 49],
+    ['June', 79, 58],
+    ['July', 83, 62],
+    ['August', 81, 61],
+    ['September', 74, 54],
+    ['October', 62, 44],
+    ['November', 50, 35],
+    ['December', 39, 26],
+  ];
 
 /**
  * Calls the methods that load the home page.
@@ -263,7 +277,7 @@ async function addComment() {
   const text = document.getElementById('text').innerHTML;
   params.append('name', name);
   params.append('text', text)	
-  const add = await fetch('add-comment', {method: 'POST', body: params});
+  await fetch('add-comment', {method: 'POST', body: params});
   getCommentSection();
 }
 
@@ -296,4 +310,72 @@ function addMarker(map, coordinates, title, icon, description){
   marker.addListener('click', () => {
     infoWindow.open(map, marker);
   });	
+}
+
+google.charts.load('current', {'packages':['line', 'corechart']});
+google.charts.setOnLoadCallback(drawTemperatureChart);
+
+/** Draws the Ithaca average monthly temperature chart. */
+function drawTemperatureChart() {
+
+  const data = new google.visualization.DataTable();
+  data.addColumn('string', 'Month');
+  data.addColumn('number', 'High');
+  data.addColumn('number', 'Low');
+
+  data.addRows(tempData);
+
+  const options = {
+    chart: {
+      title: 'Average Monthly Temperatures in Ithaca',
+      subtitle: 'in degrees Celcius',
+    },
+    series: {
+      0: { color: '#DC143C' },
+      1: { color: '#1E90FF' },
+    },
+    backgroundColor: '#FAEBD7',
+    width: 900,
+    height: 500
+  };
+
+  const chart = new google.charts.Line(document.getElementById('weather-chart-container'));
+  chart.draw(data, google.charts.Line.convertOptions(options));
+}
+
+google.charts.setOnLoadCallback(drawVoteChart);
+
+/** Fetches page vote data and uses it to create a chart. */
+function drawVoteChart() {
+  fetch('/vote-data').then(response => response.json())
+  .then((pageVotes) => {
+    const data = new google.visualization.DataTable();
+    data.addColumn('string', 'Page');
+    data.addColumn('number', 'Votes');
+    Object.keys(pageVotes).forEach((page) => {
+      data.addRow([page, pageVotes[page]]);
+    });
+
+    const options = {
+      title: 'Favorite Page on Website',
+      series: {
+        0: { color: '#DC143C' }
+      },
+      width: 800,
+      height: 700,
+      backgroundColor: '#FAEBD7',
+    };
+
+    const chart = new google.visualization.ColumnChart(document.getElementById('vote-container'));
+    chart.draw(data, options);
+  });
+}
+
+/** Adds a new vote to the chart showing users' favorite pages of the website. */
+async function addNewVote() {
+  const userVote = document.getElementById('user-vote').value;
+  const params = new URLSearchParams();
+  params.append('userVote', userVote);
+  await fetch('/vote-data', {method: 'POST', body: params});
+  drawVoteChart();
 }

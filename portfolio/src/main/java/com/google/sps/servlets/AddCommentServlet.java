@@ -37,13 +37,13 @@ public class AddCommentServlet extends HttpServlet {
     long timestamp = System.currentTimeMillis();
     
     // Create new Entity
-    Entity taskEntity = new Entity("Comment");
-    taskEntity.setProperty("name", name);		
-    taskEntity.setProperty("words", comment);
-    taskEntity.setProperty("timestamp", timestamp);
+    Entity commentEntity = new Entity("Comment");
+    commentEntity.setProperty("name", name);		
+    commentEntity.setProperty("words", comment);
+    commentEntity.setProperty("timestamp", timestamp);
 
     // Add it to Datastore 
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
-    datastore.put(taskEntity);
+    datastore.put(commentEntity);
   }
 }
