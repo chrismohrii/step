@@ -34,8 +34,8 @@ public class LoginServlet extends HttpServlet {
     UserService userService = UserServiceFactory.getUserService();
     boolean loggedIn = userService.isUserLoggedIn();
 
-		Gson gson = new Gson();
-		response.getWriter().println(gson.toJson(loggedIn));
+    Gson gson = new Gson();
+    response.getWriter().println(gson.toJson(loggedIn));
     
   }
 }
