@@ -129,9 +129,8 @@ const mapStyle = [
 async function start() {
   const response = await fetch('/login');
   const loggedIn = await response.json();
-  console.log(loggedIn);
   if (!loggedIn) {
-    document.getElementById("comment-section").style.display = "none";
+    document.getElementById("comment-section").innerText = "Please log in to view comment section";
     document.getElementById("set-nickname").style.display = "none";
   }
   getCommentSection();
@@ -218,7 +217,6 @@ async function getCommentSection() {
   
   // Populate the comment section again. 
   fetch(url).then(response => response.json()).then((comments) => {
-    console.log(comments);
     // Build the list of entries.
     comments.forEach((comment) => {
     history.appendChild(createCommentElement(comment));

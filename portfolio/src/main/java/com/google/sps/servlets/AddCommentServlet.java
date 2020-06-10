@@ -43,10 +43,8 @@ public class AddCommentServlet extends HttpServlet {
     long timestamp = System.currentTimeMillis();
     String nickname = getUserNickname(userService.getCurrentUser().getUserId());
 
-    String name = nickname;
-    if (name == null) {
-      name = userEmail;
-		}
+    // Set name to email if they don't have a nickname
+    String name = (nickname == null) ? userEmail : nickname;
 
     // Create new Entity
     Entity taskEntity = new Entity("Comment");
