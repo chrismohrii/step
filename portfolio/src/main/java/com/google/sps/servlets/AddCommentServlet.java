@@ -14,6 +14,8 @@
 
 package com.google.sps.servlets;
 
+import com.google.appengine.api.users.UserService;
+import com.google.appengine.api.users.UserServiceFactory;
 import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.Key;
@@ -31,14 +33,16 @@ public class AddCommentServlet extends HttpServlet {
 
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    // Get the input from the url.
-    String name = request.getParameter("name");
+    UserService userService = UserServiceFactory.getUserService();
+
+    // Get the input
+    String userEmail = userService.getCurrentUser().getEmail();
     String comment = request.getParameter("text");
     long timestamp = System.currentTimeMillis();
     
     // Create new Entity
     Entity taskEntity = new Entity("Comment");
-    taskEntity.setProperty("name", name);		
+    taskEntity.setProperty("name", userEmail);		
     taskEntity.setProperty("words", comment);
     taskEntity.setProperty("timestamp", timestamp);
 

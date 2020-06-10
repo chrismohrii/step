@@ -131,7 +131,7 @@ async function start() {
   const loggedIn = await response.json();
   console.log(loggedIn);
   if (!loggedIn) {
-    document.getElementById("history").style.display = "none";
+    document.getElementById("comment-section").style.display = "none";
   }
   getCommentSection();
   createMap();
@@ -217,7 +217,7 @@ async function getCommentSection() {
   
   // Populate the comment section again. 
   fetch(url).then(response => response.json()).then((comments) => {
-
+    console.log(comments);
     // Build the list of entries.
     comments.forEach((comment) => {
     history.appendChild(createCommentElement(comment));
@@ -267,7 +267,6 @@ function deleteSpecificComment(comment) {
 /** Tells the server to add a comment. */
 async function addComment() {
   const params = new URLSearchParams();
-  const name = document.getElementById('name').innerHTML;
   const text = document.getElementById('text').innerHTML;
   params.append('name', name);
   params.append('text', text)	
