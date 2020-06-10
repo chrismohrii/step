@@ -205,18 +205,26 @@ async function getCommentSection() {
   const history = document.getElementById('history');
   history.innerHTML = '';
 
-  // Get user's desired number of comments. 
-  const selectedMaxComments = document.getElementById('exampleFormControlSelect1').value;
-  const url = '/data?maxComments=' + selectedMaxComments;
-  
-  // Populate the comment section again. 
-  fetch(url).then(response => response.json()).then((comments) => {
+  // Check login status.
+  const loggedIn = await fetch('/login');
+  if (loggedIn === true) {
 
-    // Build the list of entries.
-    comments.forEach((comment) => {
-    history.appendChild(createCommentElement(comment));
+    // Get user's desired number of comments. 
+    const selectedMaxComments = document.getElementById('exampleFormControlSelect1').value;
+    const url = '/data?maxComments=' + selectedMaxComments;
+  
+    // Populate the comment section again. 
+    fetch(url).then(response => response.json()).then((comments) => {
+
+      // Build the list of entries.
+      comments.forEach((comment) => {
+      history.appendChild(createCommentElement(comment));
+      });
     });
-  });
+  }
+  else {
+    history.innerHTML = "<p>Please log in to view comments</p>";	
+	}
 }
 
 /** Creates a comment element. */
