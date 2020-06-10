@@ -68,17 +68,15 @@ public class VoteDataServlet extends HttpServlet {
     PreparedQuery results = datastore.prepare(query);
 
     // Check if the page is in the query
-    boolean inDatastore = false;
     Entity foundEntity = null;
     for (Entity entity : results.asIterable()) {
       String entityPage = (String) entity.getProperty("page");
       if (page.equals(entityPage)) {
-        inDatastore = true;
         foundEntity = entity;
       } 
     }
 
-    if (inDatastore) {
+    if (foundEntity != null) {
       // If yes, increment count by 1
       long currentVotes = (Long) foundEntity.getProperty("count");
       foundEntity.setProperty("count", currentVotes + 1);
