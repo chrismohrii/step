@@ -16,6 +16,8 @@ package com.google.sps.servlets;
 
 import com.google.appengine.api.users.UserService;
 import com.google.appengine.api.users.UserServiceFactory;
+import com.google.appengine.api.datastore.PreparedQuery;
+import com.google.appengine.api.datastore.Query;
 import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.Key;
@@ -39,10 +41,16 @@ public class AddCommentServlet extends HttpServlet {
     String userEmail = userService.getCurrentUser().getEmail();
     String comment = request.getParameter("text");
     long timestamp = System.currentTimeMillis();
-    
+    String nickname = getUserNickname(userService.getCurrentUser().getUserId());
+
+    String name = nickname;
+    if (name == null) {
+      name = userEmail;
+		}
+
     // Create new Entity
     Entity taskEntity = new Entity("Comment");
-    taskEntity.setProperty("name", userEmail);		
+    taskEntity.setProperty("name", name);		
     taskEntity.setProperty("words", comment);
     taskEntity.setProperty("timestamp", timestamp);
 
@@ -50,4 +58,20 @@ public class AddCommentServlet extends HttpServlet {
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     datastore.put(taskEntity);
   }
+ 
+  /** Returns the nickname of the user with id, or null if the user has not set a nickname. */
+  private String getUserNickname(String id) {
+    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+    Query query =
+        new Query("UserInfo")
+            .setFilter(new Query.FilterPredicate("id", Query.FilterOperator.EQUAL, id));
+    PreparedQuery results = datastore.prepare(query);
+    Entity entity = results.asSingleEntity();
+    if (entity == null) {
+      return null;
+    }
+    String nickname = (String) entity.getProperty("nickname");
+    return nickname;
+  }
+  
 }

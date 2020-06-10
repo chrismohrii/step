@@ -132,6 +132,7 @@ async function start() {
   console.log(loggedIn);
   if (!loggedIn) {
     document.getElementById("comment-section").style.display = "none";
+    document.getElementById("set-nickname").style.display = "none";
   }
   getCommentSection();
   createMap();
