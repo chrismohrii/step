@@ -126,7 +126,13 @@ const mapStyle = [
 /**
  * Calls the methods that load the home page.
  */
-function start() {
+async function start() {
+  const response = await fetch('/login');
+  const loggedIn = await response.json();
+  console.log(loggedIn);
+  if (!loggedIn) {
+    document.getElementById("history").style.display = "none";
+  }
   getCommentSection();
   createMap();
 }
@@ -205,27 +211,21 @@ async function getCommentSection() {
   const history = document.getElementById('history');
   history.innerHTML = '';
 
-  // Check login status.
-  const loggedIn = await fetch('/login');
-  if (loggedIn === true) {
-
-    // Get user's desired number of comments. 
-    const selectedMaxComments = document.getElementById('exampleFormControlSelect1').value;
-    const url = '/data?maxComments=' + selectedMaxComments;
+  // Get user's desired number of comments. 
+  const selectedMaxComments = document.getElementById('exampleFormControlSelect1').value;
+  const url = '/data?maxComments=' + selectedMaxComments;
   
-    // Populate the comment section again. 
-    fetch(url).then(response => response.json()).then((comments) => {
+  // Populate the comment section again. 
+  fetch(url).then(response => response.json()).then((comments) => {
 
-      // Build the list of entries.
-      comments.forEach((comment) => {
-      history.appendChild(createCommentElement(comment));
-      });
+    // Build the list of entries.
+    comments.forEach((comment) => {
+    history.appendChild(createCommentElement(comment));
     });
-  }
-  else {
-    history.innerHTML = "<p>Please log in to view comments</p>";	
-	}
+  });
 }
+
+
 
 /** Creates a comment element. */
 function createCommentElement(comment) {
