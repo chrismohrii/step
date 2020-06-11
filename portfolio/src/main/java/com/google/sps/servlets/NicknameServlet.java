@@ -42,7 +42,6 @@ public class NicknameServlet extends HttpServlet {
     out.println("<br/>");
     out.println("<button>Submit</button>");
     out.println("</form>");
-
   }
 
   @Override
