@@ -41,10 +41,11 @@
         studying Computer Science and Mathematics, with a minor in Business. I am 
         currently a STEP intern at Google. This is my portfolio.
       </div>
-      <div class="col-3 margin-atop center-text">
+      <div class="col-3 margin-atop d-flex justify-content-center">
         <a href="/_ah/login?continue=%2F">Log in/out</a>
-        <div id="set-nickname">
-          <a href="nickname">Set/change nickname</a>
+        <div id="nickname" class="margin-atop">
+          <textarea class="form-control margin-atop center-text" id="nickname-text" rows="1" placeholder="Nickname..." style="width:200px;"></textarea>
+          <input type="submit" class="btn btn-outline-primary" value="Set/update nickname" style="width:200px;" onclick="setNickname()"/>
         </div>
       </div>
     </div>

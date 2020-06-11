@@ -153,7 +153,7 @@ async function start(page) {
     }
     else {
       document.getElementById("comment-section").innerText = "Please log in to view comment section";
-      document.getElementById("set-nickname").style.display = "none";
+      document.getElementById("nickname").style.display = "none";
     }
   }
 }
@@ -189,7 +189,6 @@ function addRandomFunFact(){
   // Pick a fact.
   const fact = facts[Math.floor(Math.random() * facts.length)];
 
-
   // Add it to the page.
   const factContainer = document.getElementById('fact-container');
   factContainer.innerText = fact;
@@ -204,7 +203,6 @@ function addRandomNumber(container){
     
   // Pick a number.
   const number = numbers[Math.floor(Math.random() * numbers.length)];
-
 
   // Add it to the page.
   const numberContainer = document.getElementById(container);
@@ -296,8 +294,17 @@ async function addComment() {
   const params = new URLSearchParams();
   const text = document.getElementById('text').value;
   params.append('text', text);	
-  await fetch('add-comment', {method: 'POST', body: params});
+  await fetch('/add-comment', {method: 'POST', body: params});
   getCommentSection();
+}
+
+/** Tells the server to update the user's nickname. */
+async function setNickname() {
+  const params = new URLSearchParams();
+  const nickname = document.getElementById('nickname-text').value;
+  params.append('nickname', nickname);	
+  await fetch('/nickname', {method: 'POST', body: params});
+  document.getElementById('nickname-text').value = '';
 }
 
 /** Creates a map and adds it to the page. */
