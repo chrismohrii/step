@@ -140,7 +140,7 @@ const mapStyle = [
 /**
  * Calls the methods that load the home page.
  */
-async function start() {
+async function start(page) {
   createMap();
   const response = await fetch('/login');
   const loggedIn = await response.json();
@@ -153,6 +153,15 @@ async function start() {
     document.getElementById("comment-section").innerText = "Please log in to view comment section";
     document.getElementById("set-nickname").style.display = "none";
   }
+  if (page === 'home') {
+    loadChartsApi();  
+	}
+}
+
+function loadChartsApi() {
+  google.charts.load('current', {'packages':['line', 'corechart']});
+  google.charts.setOnLoadCallback(drawTemperatureChart);
+  google.charts.setOnLoadCallback(drawVoteChart);
 }
 
 /**
@@ -322,9 +331,6 @@ function addMarker(map, coordinates, title, icon, description){
   });	
 }
 
-google.charts.load('current', {'packages':['line', 'corechart']});
-google.charts.setOnLoadCallback(drawTemperatureChart);
-
 /** Draws the Ithaca average monthly temperature chart. */
 function drawTemperatureChart() {
 
@@ -338,7 +344,7 @@ function drawTemperatureChart() {
   const options = {
     chart: {
       title: 'Average Monthly Temperatures in Ithaca',
-      subtitle: 'in degrees Celcius',
+      subtitle: 'in degrees Farenheit',
     },
     series: {
       0: { color: '#DC143C' },
@@ -352,8 +358,6 @@ function drawTemperatureChart() {
   const chart = new google.charts.Line(document.getElementById('weather-chart-container'));
   chart.draw(data, google.charts.Line.convertOptions(options));
 }
-
-google.charts.setOnLoadCallback(drawVoteChart);
 
 /** Fetches page vote data and uses it to create a chart. */
 function drawVoteChart() {
