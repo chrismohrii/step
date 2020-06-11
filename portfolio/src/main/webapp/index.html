@@ -13,7 +13,7 @@
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAryuMWR7Zsz4IOnEvMX7lksuZr6mpYkuw"></script>
 </head>
 
-<body  onload="start()">
+<body  onload="start('home')">
   <div class:"container-fluid">
     <div>
       <div class="collapse" id="navbarToggleExternalContent">
@@ -34,12 +34,18 @@
       </div>
     </div>  
     <div class="row peach">
-      <div class="col-3">
+      <div class="col-3 margin-atop">
       </div>
       <div class="col-6 margin-atop">
         Hi! My name is Chris Mohri. I am a rising sophmore at Cornell University 
         studying Computer Science and Mathematics, with a minor in Business. I am 
         currently a STEP intern at Google. This is my portfolio.
+      </div>
+      <div class="col-3 margin-atop center-text">
+        <a href="/_ah/login?continue=%2F">Log in/out</a>
+        <div id="set-nickname">
+          <a href="nickname">Set/change nickname</a>
+        </div>
       </div>
     </div>
     <div class="row peach">
@@ -130,14 +136,12 @@
       </div>
       <div class="col-6 center-text margin-bottom">
         <h1>Comments</h1>
-        Enter a comment!
       </div>
     </div>
-    <div class="row peach">
+    <div class="row peach padding-bottom">
       <div class="col-3">
       </div>
-      <div class="col-6 center-text margin-bottom">
-        <textarea class="form-control" id="name" rows="1" placeholder="Name"></textarea>				  
+      <div class="col-6 center-image margin-bottom" id="comment-section">
         <textarea class="form-control" id="text" rows="3" placeholder="Comment..."></textarea>
         <input type="submit" class="btn btn-outline-primary" value="Submit comment" style="margin-top: 20px; margin-bottom:30px;" onclick="addComment()"/>
         <hr>

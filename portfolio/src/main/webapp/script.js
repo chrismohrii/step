@@ -140,9 +140,28 @@ const mapStyle = [
 /**
  * Calls the methods that load the home page.
  */
-function start() {
-  getCommentSection();
-  createMap();
+async function start(page) {
+  if (page === 'home') {
+    loadChartsApi();  
+    createMap();
+    const response = await fetch('/login');
+    const loggedIn = await response.json();
+  
+    // Hide the comment section & nickname link and show text asking user to log in if they not logged in.
+    if (loggedIn) {
+      getCommentSection();
+    }
+    else {
+      document.getElementById("comment-section").innerText = "Please log in to view comment section";
+      document.getElementById("set-nickname").style.display = "none";
+    }
+  }
+}
+
+function loadChartsApi() {
+  google.charts.load('current', {'packages':['line', 'corechart']});
+  google.charts.setOnLoadCallback(drawTemperatureChart);
+  google.charts.setOnLoadCallback(drawVoteChart);
 }
 
 /**
@@ -219,13 +238,15 @@ async function getCommentSection() {
   const history = document.getElementById('history');
   history.innerHTML = '';
 
+  // Clear the text in the text box.
+  document.getElementById('text').value = '';
+
   // Get user's desired number of comments. 
   const selectedMaxComments = document.getElementById('exampleFormControlSelect1').value;
   const url = '/data?maxComments=' + selectedMaxComments;
   
   // Populate the comment section again. 
   fetch(url).then(response => response.json()).then((comments) => {
-
     // Build the list of entries.
     comments.forEach((comment) => {
     history.appendChild(createCommentElement(comment));
@@ -273,10 +294,8 @@ function deleteSpecificComment(comment) {
 /** Tells the server to add a comment. */
 async function addComment() {
   const params = new URLSearchParams();
-  const name = document.getElementById('name').innerHTML;
-  const text = document.getElementById('text').innerHTML;
-  params.append('name', name);
-  params.append('text', text)	
+  const text = document.getElementById('text').value;
+  params.append('text', text);	
   await fetch('add-comment', {method: 'POST', body: params});
   getCommentSection();
 }
@@ -312,9 +331,6 @@ function addMarker(map, coordinates, title, icon, description){
   });	
 }
 
-google.charts.load('current', {'packages':['line', 'corechart']});
-google.charts.setOnLoadCallback(drawTemperatureChart);
-
 /** Draws the Ithaca average monthly temperature chart. */
 function drawTemperatureChart() {
 
@@ -328,7 +344,7 @@ function drawTemperatureChart() {
   const options = {
     chart: {
       title: 'Average Monthly Temperatures in Ithaca',
-      subtitle: 'in degrees Celcius',
+      subtitle: 'in degrees Farenheit',
     },
     series: {
       0: { color: '#DC143C' },
@@ -342,8 +358,6 @@ function drawTemperatureChart() {
   const chart = new google.charts.Line(document.getElementById('weather-chart-container'));
   chart.draw(data, google.charts.Line.convertOptions(options));
 }
-
-google.charts.setOnLoadCallback(drawVoteChart);
 
 /** Fetches page vote data and uses it to create a chart. */
 function drawVoteChart() {

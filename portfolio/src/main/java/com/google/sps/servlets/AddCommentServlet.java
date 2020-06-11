@@ -14,6 +14,10 @@
 
 package com.google.sps.servlets;
 
+import com.google.appengine.api.users.UserService;
+import com.google.appengine.api.users.UserServiceFactory;
+import com.google.appengine.api.datastore.PreparedQuery;
+import com.google.appengine.api.datastore.Query;
 import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.Key;
@@ -31,11 +35,17 @@ public class AddCommentServlet extends HttpServlet {
 
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    // Get the input from the url.
-    String name = request.getParameter("name");
+    UserService userService = UserServiceFactory.getUserService();
+
+    // Get the input
+    String userEmail = userService.getCurrentUser().getEmail();
     String comment = request.getParameter("text");
     long timestamp = System.currentTimeMillis();
-    
+    String nickname = getUserNickname(userService.getCurrentUser().getUserId());
+
+    // Set name to email if they don't have a nickname
+    String name = (nickname == null) ? userEmail : nickname;
+
     // Create new Entity
     Entity commentEntity = new Entity("Comment");
     commentEntity.setProperty("name", name);		
@@ -46,4 +56,20 @@ public class AddCommentServlet extends HttpServlet {
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     datastore.put(commentEntity);
   }
+ 
+  /** Returns the nickname of the user with id, or null if the user has not set a nickname. */
+  private String getUserNickname(String id) {
+    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+    Query query =
+      new Query("UserInfo")
+        .setFilter(new Query.FilterPredicate("id", Query.FilterOperator.EQUAL, id));
+    PreparedQuery results = datastore.prepare(query);
+    Entity entity = results.asSingleEntity();
+    if (entity == null) {
+      return null;
+    }
+    String nickname = (String) entity.getProperty("nickname");
+    return nickname;
+  }
+  
 }
