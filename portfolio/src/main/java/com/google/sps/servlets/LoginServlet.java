@@ -36,6 +36,5 @@ public class LoginServlet extends HttpServlet {
 
     Gson gson = new Gson();
     response.getWriter().println(gson.toJson(loggedIn));
-    
   }
 }

@@ -141,14 +141,18 @@ const mapStyle = [
  * Calls the methods that load the home page.
  */
 async function start() {
+  createMap();
   const response = await fetch('/login');
   const loggedIn = await response.json();
-  if (!loggedIn) {
+  
+  // Hide the comment section & nickname link and show text asking user to log in if they not logged in.
+  if (loggedIn) {
+    getCommentSection();
+  }
+  else {
     document.getElementById("comment-section").innerText = "Please log in to view comment section";
     document.getElementById("set-nickname").style.display = "none";
   }
-  getCommentSection();
-  createMap();
 }
 
 /**
@@ -237,8 +241,6 @@ async function getCommentSection() {
     });
   });
 }
-
-
 
 /** Creates a comment element. */
 function createCommentElement(comment) {
