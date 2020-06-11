@@ -229,6 +229,9 @@ async function getCommentSection() {
   const history = document.getElementById('history');
   history.innerHTML = '';
 
+  // Clear the text in the text box.
+  document.getElementById('text').value = '';
+
   // Get user's desired number of comments. 
   const selectedMaxComments = document.getElementById('exampleFormControlSelect1').value;
   const url = '/data?maxComments=' + selectedMaxComments;
@@ -282,9 +285,8 @@ function deleteSpecificComment(comment) {
 /** Tells the server to add a comment. */
 async function addComment() {
   const params = new URLSearchParams();
-  const text = document.getElementById('text').innerHTML;
-  params.append('name', name);
-  params.append('text', text)	
+  const text = document.getElementById('text').value;
+  params.append('text', text);	
   await fetch('add-comment', {method: 'POST', body: params});
   getCommentSection();
 }
