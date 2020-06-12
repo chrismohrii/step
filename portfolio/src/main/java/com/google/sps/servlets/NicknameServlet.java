@@ -32,19 +32,6 @@ import javax.servlet.http.HttpServletResponse;
 public class NicknameServlet extends HttpServlet {
 
   @Override
-  public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    response.setContentType("text/html");
-    PrintWriter out = response.getWriter();
-    out.println("<h1>Set Nickname</h1>");
-    out.println("<p>Set your nickname here:</p>");
-    out.println("<form method=\"POST\" action=\"/nickname\">");
-    out.println("<input name=\"nickname\"/>");
-    out.println("<br/>");
-    out.println("<button>Submit</button>");
-    out.println("</form>");
-  }
-
-  @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
     UserService userService = UserServiceFactory.getUserService();
     String nickname = request.getParameter("nickname");
@@ -55,7 +42,5 @@ public class NicknameServlet extends HttpServlet {
     entity.setProperty("id", id);
     entity.setProperty("nickname", nickname);
     datastore.put(entity);
-
-    response.sendRedirect("/index.html");
   }
 }

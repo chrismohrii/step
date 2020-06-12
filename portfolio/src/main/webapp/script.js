@@ -152,8 +152,8 @@ async function start(page) {
       getCommentSection();
     }
     else {
-      document.getElementById("comment-section").innerText = "Please log in to view comment section";
-      document.getElementById("set-nickname").style.display = "none";
+      document.getElementById('comment-section').innerText = 'Please log in to view comment section';
+      document.getElementById('nickname').style.display = 'none';
     }
   }
 }
@@ -189,7 +189,6 @@ function addRandomFunFact(){
   // Pick a fact.
   const fact = facts[Math.floor(Math.random() * facts.length)];
 
-
   // Add it to the page.
   const factContainer = document.getElementById('fact-container');
   factContainer.innerText = fact;
@@ -200,11 +199,10 @@ function addRandomFunFact(){
  */
 function addRandomNumber(container){
     const numbers = 
-        ['1', '2', '3', "4", "5"];
+        ['1', '2', '3', '4', '5'];
     
   // Pick a number.
   const number = numbers[Math.floor(Math.random() * numbers.length)];
-
 
   // Add it to the page.
   const numberContainer = document.getElementById(container);
@@ -223,10 +221,10 @@ function hasWon(){
 
   // Compare the numbers for appropriate message. 
   if (firstNumber === secondNumber && firstNumber == thirdNumber){
-    winBox.innerText = "You Win!";
+    winBox.innerText = 'You Win!';
     }
   else {
-    winBox.innerText = "";
+    winBox.innerText = '';
     }
 }
 
@@ -260,7 +258,7 @@ function createCommentElement(comment) {
   commentElement.className = 'comment';
 
   const textElement = document.createElement('span');
-  textElement.innerText = comment.name + ": " + comment.words;
+  textElement.innerText = comment.name + ': ' + comment.words;
 
   const deleteButtonElement = document.createElement('button');
   deleteButtonElement.className = 'btn btn-outline-primary';
@@ -296,8 +294,17 @@ async function addComment() {
   const params = new URLSearchParams();
   const text = document.getElementById('text').value;
   params.append('text', text);	
-  await fetch('add-comment', {method: 'POST', body: params});
+  await fetch('/add-comment', {method: 'POST', body: params});
   getCommentSection();
+}
+
+/** Tells the server to update the user's nickname. */
+async function setNickname() {
+  const params = new URLSearchParams();
+  const nickname = document.getElementById('nickname-text').value;
+  params.append('nickname', nickname);	
+  await fetch('/nickname', {method: 'POST', body: params});
+  document.getElementById('nickname-text').value = '';
 }
 
 /** Creates a map and adds it to the page. */
@@ -309,10 +316,10 @@ async function createMap() {
     }
   );
  
-  addMarker(map, {lat: 42.4550, lng: -76.4777}, "Freshman year dorm", iconBeachFlag, "<b>Mary Donlon Hall</b><br>Freshman year dorm - Chris lived on the fourth floor in a quad");
-  addMarker(map, {lat: 42.4477, lng: -76.4853}, "Favorite library", iconBeachFlag, "<b>Uris Library</b><br>The underground is called the Cocktail lounge");
-  addMarker(map, {lat: 42.4462, lng: -76.4823}, "Favorite dining hall", iconBeachFlag, "<b>Terrace dining hall</b><br>Has great food");
-  addMarker(map, {lat: 42.4529, lng: -76.4774}, "Favorite gym", iconBeachFlag, "<b>Helen Newman Gym</b><br>Has gym, basketball courts, and swimming pool");
+  addMarker(map, {lat: 42.4550, lng: -76.4777}, 'Freshman year dorm', iconBeachFlag, '<b>Mary Donlon Hall</b><br>Freshman year dorm - Chris lived on the fourth floor in a quad');
+  addMarker(map, {lat: 42.4477, lng: -76.4853}, 'Favorite library', iconBeachFlag, '<b>Uris Library</b><br>The underground is called the Cocktail lounge');
+  addMarker(map, {lat: 42.4462, lng: -76.4823}, 'Favorite dining hall', iconBeachFlag, '<b>Terrace dining hall</b><br>Has great food');
+  addMarker(map, {lat: 42.4529, lng: -76.4774}, 'Favorite gym', iconBeachFlag, '<b>Helen Newman Gym</b><br>Has gym, basketball courts, and swimming pool');
 }
 
 /** Creates a marker given a map, coordinates, description, and icon. */
