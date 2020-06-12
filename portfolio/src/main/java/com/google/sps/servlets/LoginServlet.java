@@ -37,7 +37,7 @@ public class LoginServlet extends HttpServlet {
     String loginURL = userService.createLoginURL("/");
     String logoutURL = userService.createLogoutURL("/");
   
-	  LoginInfo info = new LoginInfo(loggedIn, loginURL, logoutURL);
+    LoginInfo info = new LoginInfo(loggedIn, loginURL, logoutURL);
     Gson gson = new Gson();
     response.getWriter().println(gson.toJson(info));
   }
