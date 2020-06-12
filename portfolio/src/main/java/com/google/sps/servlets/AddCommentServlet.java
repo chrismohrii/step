@@ -42,6 +42,7 @@ public class AddCommentServlet extends HttpServlet {
     String comment = request.getParameter("text");
     long timestamp = System.currentTimeMillis();
     String nickname = getUserNickname(userService.getCurrentUser().getUserId());
+    String toxicity = request.getParameter("toxicity");
 
     // Set name to email if they don't have a nickname
     String name = (nickname == null) ? userEmail : nickname;
@@ -51,6 +52,7 @@ public class AddCommentServlet extends HttpServlet {
     commentEntity.setProperty("name", name);		
     commentEntity.setProperty("words", comment);
     commentEntity.setProperty("timestamp", timestamp);
+    commentEntity.setProperty("toxicity", toxicity);
 
     // Add it to Datastore 
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();

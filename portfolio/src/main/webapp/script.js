@@ -299,16 +299,14 @@ async function addComment() {
     return;
   }
   params.append('text', text);	
-  await fetch(
+  fetch(
   'https://commentanalyzer.googleapis.com/v1alpha1/comments:analyze?key=API_KEY',
     {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({comment: {text: text}, languages: [], requestedAttributes: { TOXICITY: {} }})
     }
-    ).then(response => response.json()).then(data => {
-      console.log(data);
-      console.log(data.attributeScores.TOXICITY.summaryScore.value);
+    ).then(async response => response.json()).then(async data => {
       const score = data.attributeScores.TOXICITY.summaryScore.value;
       if (score > 0.8) {
         document.getElementById('text').value = '';
@@ -316,7 +314,8 @@ async function addComment() {
         return;
       }
       else {
-        await fetch('add-comment', {method: 'POST', body: params});
+        params.append('toxicity', score);
+        await fetch('/add-comment', {method: 'POST', body: params});
         getCommentSection();
       }
     }
