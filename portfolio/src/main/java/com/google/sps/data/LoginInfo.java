@@ -14,18 +14,16 @@
 
 package com.google.sps.data;
 
-/** An item on a comment list. */
-public final class Comment {
+/** An object containing appropriate authentication information. */
+public final class LoginInfo {
 
-  private final String name;
-  private final String words;
-  private final long timestamp;
-  private final long id;
+  private final boolean loggedIn;
+  private final String loginURL;
+  private final String logoutURL;
 
-  public Comment(String name, String words, long timestamp, long id) {
-    this.name = name;
-    this.words = words;
-    this.timestamp = timestamp;
-    this.id = id;
+  public LoginInfo(boolean loggedIn, String loginURL, String logoutURL) {
+    this.loggedIn = loggedIn;
+    this.loginURL = loginURL;
+    this.logoutURL = logoutURL;
   }
 }
