@@ -293,9 +293,34 @@ function deleteSpecificComment(comment) {
 async function addComment() {
   const params = new URLSearchParams();
   const text = document.getElementById('text').value;
+  if (text === '') {
+    document.getElementById('text').value = '';
+    alert('Your message is empty. Please try again');
+    return;
+  }
   params.append('text', text);	
-  await fetch('/add-comment', {method: 'POST', body: params});
-  getCommentSection();
+  await fetch(
+  'https://commentanalyzer.googleapis.com/v1alpha1/comments:analyze?key=API_KEY',
+    {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({comment: {text: text}, languages: [], requestedAttributes: { TOXICITY: {} }})
+    }
+    ).then(response => response.json()).then(data => {
+      console.log(data);
+      console.log(data.attributeScores.TOXICITY.summaryScore.value);
+      const score = data.attributeScores.TOXICITY.summaryScore.value;
+      if (score > 0.8) {
+        document.getElementById('text').value = '';
+        alert('Your message is too toxic. Please try again');
+        return;
+      }
+      else {
+        await fetch('add-comment', {method: 'POST', body: params});
+        getCommentSection();
+      }
+    }
+  );
 }
 
 /** Tells the server to update the user's nickname. */
