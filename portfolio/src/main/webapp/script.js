@@ -315,7 +315,7 @@ async function addComment() {
       }
       else {
         params.append('toxicity', score);
-        await fetch('/add-comment', {method: 'POST', body: params});
+        await fetch('/add-comment', {method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({text: text, toxicity: score})});
         getCommentSection();
       }
     }
