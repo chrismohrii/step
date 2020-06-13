@@ -278,7 +278,7 @@ function createCommentElement(comment) {
 
 /** Deletes all comments in the comments section */
 async function deleteComments() {
-  const del = await fetch('/delete-data', {method: 'POST'});
+  await fetch('/delete-data', {method: 'POST'});
   getCommentSection();
 }
 

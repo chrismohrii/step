@@ -15,7 +15,7 @@
 package com.google.sps.servlets;
 
 import com.google.gson.JsonObject;
-import com.google.sps.data.CommentInfo;
+import com.google.sps.data.InputInfo;
 import com.google.gson.Gson;
 import com.google.appengine.api.users.UserService;
 import com.google.appengine.api.users.UserServiceFactory;
@@ -43,7 +43,7 @@ public class AddCommentServlet extends HttpServlet {
     // Get the input
     String data = request.getReader().readLine();
     Gson gson = new Gson();		
-    CommentInfo info = gson.fromJson(data, CommentInfo.class);
+    InputInfo info = gson.fromJson(data, InputInfo.class);
 
     String text = info.getText();
     float toxicity = info.getToxicity();
