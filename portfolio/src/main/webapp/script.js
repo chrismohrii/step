@@ -151,12 +151,12 @@ async function start(page) {
  
     // Show approprite log in/out prompt, and hide the comments & nickname link if user is logged out.
     if (loggedIn) {
-      loginElement.innerHTML = '<a>Log Out</a>';
+      loginElement.innerText = 'Log Out';
       loginElement.href = info.logoutURL;
       getCommentSection();
     }
     else {
-      loginElement.innerHTML = '<a>Log In</a>';
+      loginElement.innerText = 'Log In';
       loginElement.href = info.loginURL;
       document.getElementById('comment-section').innerText = 'Please log in to view comment section';
       document.getElementById('nickname').style.display = 'none';
