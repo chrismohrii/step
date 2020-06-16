@@ -278,7 +278,7 @@ function createCommentElement(comment) {
 
 /** Deletes all comments in the comments section */
 async function deleteComments() {
-  const del = await fetch('/delete-data', {method: 'POST'});
+  await fetch('/delete-data', {method: 'POST'});
   getCommentSection();
 }
 
@@ -293,9 +293,33 @@ function deleteSpecificComment(comment) {
 async function addComment() {
   const params = new URLSearchParams();
   const text = document.getElementById('text').value;
+  if (text === '') {
+    document.getElementById('text').value = '';
+    alert('Your message is empty. Please try again');
+    return;
+  }
   params.append('text', text);	
-  await fetch('/add-comment', {method: 'POST', body: params});
-  getCommentSection();
+  fetch(
+  'https://commentanalyzer.googleapis.com/v1alpha1/comments:analyze?key=API_KEY',
+    {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({comment: {text: text}, languages: [], requestedAttributes: { TOXICITY: {} }})
+    }
+    ).then(async response => response.json()).then(async data => {
+      const score = data.attributeScores.TOXICITY.summaryScore.value;
+      if (score > 0.8) {
+        document.getElementById('text').value = '';
+        alert('Your message is too toxic. Please try again');
+        return;
+      }
+      else {
+        params.append('toxicity', score);
+        await fetch('/add-comment', {method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({text: text, toxicity: score})});
+        getCommentSection();
+      }
+    }
+  );
 }
 
 /** Tells the server to update the user's nickname. */

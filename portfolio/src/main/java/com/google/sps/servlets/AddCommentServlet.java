@@ -14,6 +14,9 @@
 
 package com.google.sps.servlets;
 
+import com.google.gson.JsonObject;
+import com.google.sps.data.CommentInfo;
+import com.google.gson.Gson;
 import com.google.appengine.api.users.UserService;
 import com.google.appengine.api.users.UserServiceFactory;
 import com.google.appengine.api.datastore.PreparedQuery;
@@ -38,8 +41,13 @@ public class AddCommentServlet extends HttpServlet {
     UserService userService = UserServiceFactory.getUserService();
 
     // Get the input
+    String data = request.getReader().readLine();
+    Gson gson = new Gson();		
+    CommentInfo info = gson.fromJson(data, CommentInfo.class);
+
+    String text = info.getText();
+    float toxicity = info.getToxicity();
     String userEmail = userService.getCurrentUser().getEmail();
-    String comment = request.getParameter("text");
     long timestamp = System.currentTimeMillis();
     String nickname = getUserNickname(userService.getCurrentUser().getUserId());
 
@@ -49,14 +57,15 @@ public class AddCommentServlet extends HttpServlet {
     // Create new Entity
     Entity commentEntity = new Entity("Comment");
     commentEntity.setProperty("name", name);		
-    commentEntity.setProperty("words", comment);
+    commentEntity.setProperty("words", text);
     commentEntity.setProperty("timestamp", timestamp);
+    commentEntity.setProperty("toxicity", toxicity);
 
     // Add it to Datastore 
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     datastore.put(commentEntity);
   }
- 
+
   /** Returns the nickname of the user with id, or null if the user has not set a nickname. */
   private String getUserNickname(String id) {
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
