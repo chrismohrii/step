@@ -15,12 +15,12 @@
 package com.google.sps.data;
 
 /** An object with the information sent by the user when submitting a comment */
-public final class InputInfo {
+public final class CommentInfo {
 	
   private final String text;
   private final float toxicity;
 
-  public InputInfo(String text, float toxicity) {
+  public CommentInfo(String text, float toxicity) {
     this.text = text;
     this.toxicity = toxicity;
   }
