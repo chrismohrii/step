@@ -23,22 +23,25 @@ import java.util.Set;
 
 public final class FindMeetingQuery {
   public Collection<TimeRange> query(Collection<Event> events, MeetingRequest request) {
+    // Build a Collection of every possible attendee
     Collection<String> allAttendees = new HashSet<>();
-		allAttendees.addAll(request.getAttendees());
-		allAttendees.addAll(request.getOptionalAttendees());
-		MeetingRequest requestEveryone = new MeetingRequest(allAttendees, request.getDuration());
-		Collection<TimeRange> queryAllPeople = queryGivenAttendees(events, requestEveryone);
-		if (!queryAllPeople.isEmpty()) {
-			System.out.println("returning with everyone" + queryAllPeople.toString());
-			return queryAllPeople;
-		}
-		else {
-      System.out.println("returning with madatory attendees" + queryGivenAttendees(events, request));
-			return queryGivenAttendees(events, request);
-		}
+    allAttendees.addAll(request.getAttendees());
+    allAttendees.addAll(request.getOptionalAttendees());
+
+    // Determine possible meeting times for every possible attendee 
+    MeetingRequest requestEveryone = new MeetingRequest(allAttendees, request.getDuration());
+    Collection<TimeRange> queryEveryone = queryGivenAttendees(events, requestEveryone);
+		
+    if (!queryEveryone.isEmpty()) {
+      return queryEveryone;
+    }
+    else {
+      return queryGivenAttendees(events, request);
+    }
   }
 
-	public Collection<TimeRange> queryGivenAttendees(Collection<Event> events, MeetingRequest request) {
+  /** Returns the possible meeting times given required attendees */
+  public Collection<TimeRange> queryGivenAttendees(Collection<Event> events, MeetingRequest request) {
     ArrayList<TimeRange> busy = new ArrayList<>();
 		
     // Determine times where meeting cannot be scheduled
@@ -54,6 +57,7 @@ public final class FindMeetingQuery {
     // Simplify the times to avoid overlap
     ArrayList<TimeRange> mergedBusy = merge(busy); 
 
+    // Get the complement 
     Collection<TimeRange> free = new ArrayList<>();
     if (mergedBusy.size() > 0) { 
       // Add time at start of day if possible
@@ -82,9 +86,10 @@ public final class FindMeetingQuery {
 	private ArrayList<TimeRange> merge(ArrayList<TimeRange> list) {
     // invariant: merged contains non-overlapping TimeRange objects
     ArrayList<TimeRange> merged = new ArrayList<TimeRange>();
+
     for (int i = 0; i < list.size(); i++) {
       int lastMergedIndex = merged.size() - 1;
-      // Empty or there is no overlap, so add in the time
+      // Empty or there is no overlap, so add in the TimeRange
       if (merged.size() == 0 || !merged.get(lastMergedIndex).overlaps(list.get(i))) {
         merged.add(list.get(i));
       }
