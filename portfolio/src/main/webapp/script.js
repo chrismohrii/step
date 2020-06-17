@@ -138,20 +138,26 @@ const mapStyle = [
   ];
 
 /**
- * Calls the methods that load the home page.
+ * Calls the methods that load the page.
  */
 async function start(page) {
   if (page === 'home') {
     loadChartsApi();  
     createMap();
     const response = await fetch('/login');
-    const loggedIn = await response.json();
-  
-    // Hide the comment section & nickname link and show text asking user to log in if they not logged in.
+    const info = await response.json();
+    const loggedIn = info.loggedIn;
+    const loginElement = document.getElementById('login');
+ 
+    // Show approprite log in/out prompt, and hide the comments & nickname link if user is logged out.
     if (loggedIn) {
+      loginElement.innerText = 'Log Out';
+      loginElement.href = info.logoutURL;
       getCommentSection();
     }
     else {
+      loginElement.innerText = 'Log In';
+      loginElement.href = info.loginURL;
       document.getElementById('comment-section').innerText = 'Please log in to view comment section';
       document.getElementById('nickname').style.display = 'none';
     }

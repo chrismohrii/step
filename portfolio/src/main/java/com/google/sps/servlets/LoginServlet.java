@@ -14,6 +14,7 @@
 
 package com.google.sps.servlets;
 
+import com.google.sps.data.LoginInfo;
 import com.google.appengine.api.users.UserService;
 import com.google.appengine.api.users.UserServiceFactory;
 import java.io.IOException;
@@ -33,8 +34,11 @@ public class LoginServlet extends HttpServlet {
 
     UserService userService = UserServiceFactory.getUserService();
     boolean loggedIn = userService.isUserLoggedIn();
-
+    String loginURL = userService.createLoginURL("/");
+    String logoutURL = userService.createLogoutURL("/");
+  
+    LoginInfo info = new LoginInfo(loggedIn, loginURL, logoutURL);
     Gson gson = new Gson();
-    response.getWriter().println(gson.toJson(loggedIn));
+    response.getWriter().println(gson.toJson(info));
   }
 }
