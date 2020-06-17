@@ -61,7 +61,7 @@ public final class FindMeetingQuery {
     Collection<TimeRange> free = new ArrayList<>();
     if (mergedBusy.size() > 0) { 
       // Add time at start of day if possible
-      if (mergedBusy.get(0).start() - TimeRange.START_OF_DAY >= request.getDuration()){
+      if (mergedBusy.get(0).start() - TimeRange.START_OF_DAY >= request.getDuration()) {
         free.add(TimeRange.fromStartEnd(TimeRange.START_OF_DAY, mergedBusy.get(0).start(), false));
       }
       // Fill in the time between unavailable times
@@ -71,19 +71,19 @@ public final class FindMeetingQuery {
         }
       }
       // Add time at end of day if possible
-      if (TimeRange.END_OF_DAY - mergedBusy.get(mergedBusy.size() - 1).end() >= request.getDuration()){
+      if (TimeRange.END_OF_DAY - mergedBusy.get(mergedBusy.size() - 1).end() >= request.getDuration()) {
         free.add(TimeRange.fromStartEnd(mergedBusy.get(mergedBusy.size() - 1).end(), TimeRange.END_OF_DAY, true));
       }
     }
-    else if (TimeRange.WHOLE_DAY.duration() >= request.getDuration() && request.getAttendees().size() > 0){
-      // Add the whole day if possible
+    // Add the whole day if possible
+    else if (TimeRange.WHOLE_DAY.duration() >= request.getDuration() && request.getAttendees().size() > 0) {
       free.add(TimeRange.fromStartEnd(TimeRange.START_OF_DAY, TimeRange.END_OF_DAY, true));
     }
     return free;
   }
 
-  /** Eliminates the overlapping times in a list of TimeRange objects*/
-	private ArrayList<TimeRange> merge(ArrayList<TimeRange> list) {
+  /** Eliminates the overlapping times in a sorted-by-starttime list of TimeRange objects*/
+  private ArrayList<TimeRange> merge(ArrayList<TimeRange> list) {
     // invariant: merged contains non-overlapping TimeRange objects
     ArrayList<TimeRange> merged = new ArrayList<TimeRange>();
 

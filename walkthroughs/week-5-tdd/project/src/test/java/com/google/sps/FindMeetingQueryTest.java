@@ -286,37 +286,8 @@ public final class FindMeetingQueryTest {
   }
 
   @Test
-  public void eventsWithMultipleAttendees() {
-    // Have each person have different events. We should see three options because each person has
-    // split the restricted times.
-    //                 
-    // Events  :       |--A--|     |--B--|
-    //                 |--C--|
-    // Day     : |-----------------------------|
-    // Options : |--1--|     |--2--|     |--3--|
-
-    Collection<Event> events = Arrays.asList(
-        new Event("Event 1", TimeRange.fromStartDuration(TIME_0800AM, DURATION_30_MINUTES),
-            Arrays.asList(PERSON_A, PERSON_C)),
-        new Event("Event 2", TimeRange.fromStartDuration(TIME_0900AM, DURATION_30_MINUTES),
-            Arrays.asList(PERSON_B)));
-
-    MeetingRequest request =
-        new MeetingRequest(Arrays.asList(PERSON_A, PERSON_B, PERSON_C), DURATION_30_MINUTES);
-
-    Collection<TimeRange> actual = query.query(events, request);
-    Collection<TimeRange> expected =
-        Arrays.asList(TimeRange.fromStartEnd(TimeRange.START_OF_DAY, TIME_0800AM, false),
-            TimeRange.fromStartEnd(TIME_0830AM, TIME_0900AM, false),
-            TimeRange.fromStartEnd(TIME_0930AM, TimeRange.END_OF_DAY, true));
-
-    Assert.assertEquals(expected, actual);
-  }
-
-  @Test
   public void severalOverlappingEvents() {
-    // Have each person have different events. We should see three options because each person has
-    // split the restricted times.
+    // Have one event with two people and two others overlapping . We should see three options.
     //                 
     // Events  :       |--A--|     |--B--|
     //                 |--C--|        |--D--|
