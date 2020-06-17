@@ -23,6 +23,22 @@ import java.util.Set;
 
 public final class FindMeetingQuery {
   public Collection<TimeRange> query(Collection<Event> events, MeetingRequest request) {
+    Collection<String> allAttendees = new HashSet<>();
+		allAttendees.addAll(request.getAttendees());
+		allAttendees.addAll(request.getOptionalAttendees());
+		MeetingRequest requestEveryone = new MeetingRequest(allAttendees, request.getDuration());
+		Collection<TimeRange> queryAllPeople = queryGivenAttendees(events, requestEveryone);
+		if (!queryAllPeople.isEmpty()) {
+			System.out.println("returning with everyone" + queryAllPeople.toString());
+			return queryAllPeople;
+		}
+		else {
+      System.out.println("returning with madatory attendees" + queryGivenAttendees(events, request));
+			return queryGivenAttendees(events, request);
+		}
+  }
+
+	public Collection<TimeRange> queryGivenAttendees(Collection<Event> events, MeetingRequest request) {
     ArrayList<TimeRange> busy = new ArrayList<>();
 		
     // Determine times where meeting cannot be scheduled
@@ -55,7 +71,7 @@ public final class FindMeetingQuery {
         free.add(TimeRange.fromStartEnd(mergedBusy.get(mergedBusy.size() - 1).end(), TimeRange.END_OF_DAY, true));
       }
     }
-    else if (TimeRange.WHOLE_DAY.duration() >= request.getDuration()){
+    else if (TimeRange.WHOLE_DAY.duration() >= request.getDuration() && request.getAttendees().size() > 0){
       // Add the whole day if possible
       free.add(TimeRange.fromStartEnd(TimeRange.START_OF_DAY, TimeRange.END_OF_DAY, true));
     }

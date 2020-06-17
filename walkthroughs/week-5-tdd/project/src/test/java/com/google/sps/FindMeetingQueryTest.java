@@ -60,10 +60,20 @@ public final class FindMeetingQueryTest {
 
   @Test
   public void optionsForNoAttendees() {
+    // This test has been changed from the original. It does not make sense to allot the whole day
+		// for possible meeting times if there are no attendees. In addition, it contradicts the idea of
+		// optional attendees given: return the possible meeting times of everyone (mandatory and optional
+		// attendees) if there are any, otherwise just those for mandatory attendees. According to the 
+		// walkthrough, with only unavailable optional attendees (no one can attend), no possible meeting time should be 
+		// allotted (which makes sense). However, this test originally suggested that for only unavailable 
+		// mandatory attendees (still no one can attend), the entire day should be returned. From the idea of optional
+		// attendees given above, the case of only unavailable optional attendees should return the times possible for
+		// mandatory attendees (of which there are none), and according to the walkthrough, that is none. However this test
+		// originally suggested otherwise: possible times for no mandatory attendees (& no optional attendees) is the whole day. 
     MeetingRequest request = new MeetingRequest(NO_ATTENDEES, DURATION_1_HOUR);
 
     Collection<TimeRange> actual = query.query(NO_EVENTS, request);
-    Collection<TimeRange> expected = Arrays.asList(TimeRange.WHOLE_DAY);
+    Collection<TimeRange> expected = Arrays.asList();
 
     Assert.assertEquals(expected, actual);
   }
@@ -389,17 +399,17 @@ public final class FindMeetingQueryTest {
         Arrays.asList(TimeRange.fromStartEnd(TimeRange.START_OF_DAY, TIME_0800AM, false),
             TimeRange.fromStartEnd(TIME_0900AM, TIME_0930AM, false),
             TimeRange.fromStartEnd(TIME_1000AM, TIME_1100AM, false));
-
+    
     Assert.assertEquals(expected, actual);
   }
 
-	@Test
+  @Test
   public void noMeetingTimeOnlyOptionalAttendees() {
     // No mandatory attendees, just two optional attendees with no gaps in their schedules.
     // No times are available  
     //
     // Optional: |-A-||-------A--------|
-		//           |----------B----------|
+    //           |----------B----------|
     // Events  : 
     // Day     : |---------------------|
     // Options : 
