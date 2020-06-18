@@ -66,8 +66,8 @@ public final class FindMeetingQuery {
       }
       // Fill in the time between unavailable times
       for (int i = 0; i < mergedBusy.size() - 1; i++) {
-        if (mergedBusy.get(i+1).start() - mergedBusy.get(i).end() >= request.getDuration()) {
-          free.add(TimeRange.fromStartEnd(mergedBusy.get(i).end(), mergedBusy.get(i+1).start(), false));
+        if (mergedBusy.get(i + 1).start() - mergedBusy.get(i).end() >= request.getDuration()) {
+          free.add(TimeRange.fromStartEnd(mergedBusy.get(i).end(), mergedBusy.get(i + 1).start(), false));
         }
       }
       // Add time at end of day if possible
