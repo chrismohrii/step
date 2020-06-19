@@ -58,7 +58,7 @@ public final class FindMeetingQuery {
     ArrayList<TimeRange> mergedBusyTimes = merge(busyTimes); 
 
     // Get the complement 
-		boolean moreThanOneAttendee = request.getAttendees().size() > 0;
+    boolean moreThanOneAttendee = request.getAttendees().size() > 0;
     Collection<TimeRange> freeTimes = complementOf(mergedBusyTimes, request.getDuration(), moreThanOneAttendee);
     
     return freeTimes;
