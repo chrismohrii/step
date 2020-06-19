@@ -42,44 +42,26 @@ public final class FindMeetingQuery {
 
   /** Returns the possible meeting times given required attendees */
   public Collection<TimeRange> queryGivenAttendees(Collection<Event> events, MeetingRequest request) {
-    ArrayList<TimeRange> busy = new ArrayList<>();
+    ArrayList<TimeRange> busyTimes = new ArrayList<>();
 		
     // Determine times where meeting cannot be scheduled
     for (Event event : events) { 
       if (overlappingAttendees(event.getAttendees(), request.getAttendees())) {
-        busy.add(event.getWhen());
+        busyTimes.add(event.getWhen());
       }
     }
 
     // Sort these times by start time
-    Collections.sort(busy, TimeRange.ORDER_BY_START);
+    Collections.sort(busyTimes, TimeRange.ORDER_BY_START);
 
     // Simplify the times to avoid overlap
-    ArrayList<TimeRange> mergedBusy = merge(busy); 
+    ArrayList<TimeRange> mergedBusyTimes = merge(busyTimes); 
 
     // Get the complement 
-    Collection<TimeRange> free = new ArrayList<>();
-    if (mergedBusy.size() > 0) { 
-      // Add time at start of day if possible
-      if (mergedBusy.get(0).start() - TimeRange.START_OF_DAY >= request.getDuration()) {
-        free.add(TimeRange.fromStartEnd(TimeRange.START_OF_DAY, mergedBusy.get(0).start(), false));
-      }
-      // Fill in the time between unavailable times
-      for (int i = 0; i < mergedBusy.size() - 1; i++) {
-        if (mergedBusy.get(i + 1).start() - mergedBusy.get(i).end() >= request.getDuration()) {
-          free.add(TimeRange.fromStartEnd(mergedBusy.get(i).end(), mergedBusy.get(i + 1).start(), false));
-        }
-      }
-      // Add time at end of day if possible
-      if (TimeRange.END_OF_DAY - mergedBusy.get(mergedBusy.size() - 1).end() >= request.getDuration()) {
-        free.add(TimeRange.fromStartEnd(mergedBusy.get(mergedBusy.size() - 1).end(), TimeRange.END_OF_DAY, true));
-      }
-    }
-    // Add the whole day if possible
-    else if (TimeRange.WHOLE_DAY.duration() >= request.getDuration() && request.getAttendees().size() > 0) {
-      free.add(TimeRange.fromStartEnd(TimeRange.START_OF_DAY, TimeRange.END_OF_DAY, true));
-    }
-    return free;
+		boolean moreThanOneAttendee = request.getAttendees().size() > 0;
+    Collection<TimeRange> freeTimes = complementOf(mergedBusyTimes, request.getDuration(), moreThanOneAttendee);
+    
+    return freeTimes;
   }
 
   /** Eliminates the overlapping times in a sorted-by-starttime list of TimeRange objects*/
@@ -87,7 +69,7 @@ public final class FindMeetingQuery {
     // invariant: merged contains non-overlapping TimeRange objects
     ArrayList<TimeRange> merged = new ArrayList<TimeRange>();
 
-    for (int i = 0; i < list.size(); i++) {
+    for (int i = 0; i < list.size(); i ++) {
       int lastMergedIndex = merged.size() - 1;
       // Empty or there is no overlap, so add in the TimeRange
       if (merged.size() == 0 || !merged.get(lastMergedIndex).overlaps(list.get(i))) {
@@ -101,6 +83,32 @@ public final class FindMeetingQuery {
       }
     }
     return merged;
+  }
+
+  /** Gets the complementing times of an ArrayList of TimeRange objects */
+  private Collection<TimeRange> complementOf(ArrayList<TimeRange> busyTimes, long duration, boolean moreThanOneAttendee) {
+    Collection<TimeRange> freeTimes = new ArrayList<>();
+    if (busyTimes.size() > 0) { 
+      // Add time at start of day if possible
+      if (busyTimes.get(0).start() - TimeRange.START_OF_DAY >= duration) {
+        freeTimes.add(TimeRange.fromStartEnd(TimeRange.START_OF_DAY, busyTimes.get(0).start(), false));
+      }
+      // Fill in the time between unavailable times
+      for (int i = 0; i < busyTimes.size() - 1; i ++) {
+        if (busyTimes.get(i + 1).start() - busyTimes.get(i).end() >= duration) {
+          freeTimes.add(TimeRange.fromStartEnd(busyTimes.get(i).end(), busyTimes.get(i + 1).start(), false));
+        }
+      }
+      // Add time at end of day if possible
+      if (TimeRange.END_OF_DAY - busyTimes.get(busyTimes.size() - 1).end() >= duration) {
+        freeTimes.add(TimeRange.fromStartEnd(busyTimes.get(busyTimes.size() - 1).end(), TimeRange.END_OF_DAY, true));
+      }
+    }
+    // Add the whole day if possible
+    else if (TimeRange.WHOLE_DAY.duration() >= duration && moreThanOneAttendee) {
+      freeTimes.add(TimeRange.fromStartEnd(TimeRange.START_OF_DAY, TimeRange.END_OF_DAY, true));
+    }
+    return freeTimes;
   }
 
   /** Determines whether or not there are overlapping attendees in an event and MeetingRequest */

@@ -314,7 +314,7 @@ public final class FindMeetingQueryTest {
     Assert.assertEquals(expected, actual);
   }
 
-	@Test
+  @Test
   public void wholedayOptionalAttendee() {
     // Have each person have different events. We should see three options because each person has
     // split the restricted times. Optional attendee C with all-day event should not be considered.
@@ -345,7 +345,7 @@ public final class FindMeetingQueryTest {
     Assert.assertEquals(expected, actual);
   }
 
-	@Test
+  @Test
   public void everyOptionalAttendeeIsConsidered() {
     // Have each person have different events. We should see two options because each person has
     // split the restricted times.
@@ -375,7 +375,7 @@ public final class FindMeetingQueryTest {
     Assert.assertEquals(expected, actual);
   }
 
-	@Test
+  @Test
   public void notEnoughRoomForOptionalAttendee() {
     // Have one person, but make it so that there is just enough room at one point in the day to
     // have the meeting. The optional attendee will be ignored, because there is not enough time.  
@@ -403,7 +403,7 @@ public final class FindMeetingQueryTest {
     Assert.assertEquals(expected, actual);
   }
 
-	@Test
+  @Test
   public void onlyOptionalAttendees() {
     // No mandatory attendees, just two optional attendees with several gaps in their schedules.
     // Identify and return these gaps.  
