@@ -34,8 +34,7 @@ public final class FindMeetingQuery {
 		
     if (!queryEveryone.isEmpty()) {
       return queryEveryone;
-    }
-    else {
+    } else {
       return queryGivenAttendees(events, request);
     }
   }
@@ -71,12 +70,11 @@ public final class FindMeetingQuery {
 
     for (int i = 0; i < list.size(); i ++) {
       int lastMergedIndex = merged.size() - 1;
-      // Empty or there is no overlap, so add in the TimeRange
       if (merged.size() == 0 || !merged.get(lastMergedIndex).overlaps(list.get(i))) {
+        // Empty or there is no overlap, so add in the TimeRange
         merged.add(list.get(i));
-      }
-      // There is uncontained overlap, so replace last element
-      else if (!merged.get(lastMergedIndex).contains(list.get(i))) {
+      } else if (!merged.get(lastMergedIndex).contains(list.get(i))) {
+        // There is uncontained overlap, so replace last element
         int start = merged.get(lastMergedIndex).start();
         int end = list.get(i).end();
         merged.set(lastMergedIndex, TimeRange.fromStartEnd(start, end, false));
@@ -103,9 +101,8 @@ public final class FindMeetingQuery {
       if (TimeRange.END_OF_DAY - busyTimes.get(busyTimes.size() - 1).end() >= duration) {
         freeTimes.add(TimeRange.fromStartEnd(busyTimes.get(busyTimes.size() - 1).end(), TimeRange.END_OF_DAY, true));
       }
-    }
-    // Add the whole day if possible
-    else if (TimeRange.WHOLE_DAY.duration() >= duration && moreThanOneAttendee) {
+    } else if (TimeRange.WHOLE_DAY.duration() >= duration && moreThanOneAttendee) {
+      // Add the whole day if possible
       freeTimes.add(TimeRange.fromStartEnd(TimeRange.START_OF_DAY, TimeRange.END_OF_DAY, true));
     }
     return freeTimes;
